@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fairy Cafe - Bulawayo's Premier Restaurant</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-yellow': '#1d691b',
+                        'text-dark': '#2B2B2B',
+                        'text-gray': '#7c7c7c',
+                        'bg-light': '#F2F2F2',
+                        'bg-dark': '#111',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* Custom tweaks that are harder with just utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-bg-light min-h-screen flex flex-col overflow-x-hidden text-text-dark">
+
+    <!-- Navigation -->
+    <nav class="absolute top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-2 md:px-16 box-border">
+        <!-- Logo -->
+        <a href="#" class="flex items-center md:ml-8">
+            <img src="logo.png" alt="Fairy Cafe Logo"
+                class="h-44 w-auto object-contain drop-shadow-md hover:scale-105 transition-transform duration-300">
+        </a>
+
+        <!-- Center Nav -->
+        <div class="hidden md:flex items-center gap-10">
+            <i data-lucide="search" class="w-4 h-4 cursor-pointer hover:text-primary-yellow transition-colors"></i>
+            <ul class="flex gap-8 list-none">
+                <li><a href="#" class="text-text-gray text-sm font-medium hover:text-text-dark transition-colors">Why
+                        Fairy Cafe?</a></li>
+                <li><a href="#" class="text-text-dark text-sm font-medium relative transition-colors">
+                        About
+                        <span
+                            class="absolute -top-1 -left-2.5 w-1.5 h-1.5 bg-text-dark rounded-full rotate-45 transform"></span>
+                    </a></li>
+                <li><a href="menu.html"
+                        class="text-text-gray text-sm font-medium hover:text-text-dark transition-colors">Menu
+                        <i data-lucide="chevron-down" class="inline w-3 h-3 ml-1"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- Auth Buttons -->
+        <div class="flex gap-5">
+            <button
+                class="px-6 py-2.5 rounded-full text-sm font-medium border border-text-dark/20 hover:border-text-dark hover:bg-white transition-all">Sign
+                In</button>
+            <button
+                class="px-6 py-2.5 rounded-full text-sm font-medium bg-primary-yellow text-white shadow-[0_5px_15px_rgba(29,105,27,0.4)] hover:-translate-y-0.5 hover:shadow-[0_8px_18px_rgba(29,105,27,0.6)] transition-all">Login</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="h-screen relative flex overflow-hidden"
+        style="background-image: url('hero-bg.jpeg'); background-size: cover; background-position: center;">
+
+
+        <!-- Left Section -->
+        <div
+            class="w-full md:w-1/2 pt-52 pb-16 pl-8 md:pl-24 flex flex-col justify-between items-start z-10 h-full box-border relative">
+
+            <!-- Squiggle Decoration -->
+            <div class="hidden md:block absolute top-1/4 left-20 text-gray-300 -rotate-12 transform opacity-50">
+                <svg width="40" height="10" viewBox="0 0 100 20" fill="none" stroke="currentColor" stroke-width="8">
+                    <path d="M0 10 Q25 20 50 10 T100 10" />
+                </svg>
+            </div>
+
+            <!-- Hero Text -->
+            <div class="hero-content mt-auto mb-auto z-10">
+                <div
+                    class="inline-block px-4 py-2 border border-primary-yellow/50 rounded-full text-primary-yellow text-sm font-semibold tracking-wide mb-6 bg-black/30 backdrop-blur-sm">
+                    Hungry? We got you.
+                </div>
+                <h1 class="text-[56px] md:text-[72px] font-bold leading-[1.1] mb-6 text-text-dark drop-shadow-lg">
+                    Wait Less, <br>
+                    <span class="text-primary-yellow relative inline-block">
+                        Eat More
+                        <svg class="absolute w-full h-3 -bottom-1 left-0 text-primary-yellow opacity-80"
+                            viewBox="0 0 200 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.00026 6.99996C58.4239 1.49996 124.996 -3.00004 198.026 3.99996"
+                                stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                        </svg>
+                    </span>
+                    <br> From the <span class="italic font-light text-text-dark">Grill.</span>
+                </h1>
+                <p class="text-text-dark text-lg md:text-xl max-w-md leading-relaxed mb-8 drop-shadow-md">
+                    <span class="text-primary-yellow font-medium">Skip</span> the line at Fairy Cafe. Pre-order your
+                    favorites and pick them up hot and ready.
+                </p>
+
+                <!-- Pricing & CTA -->
+                <div class="flex items-end gap-5 mb-8 text-text-dark">
+                    <span class="line-through text-gray-500 font-semibold text-2xl drop-shadow-md">$7,90</span>
+                    <div class="text-[64px] font-bold leading-none drop-shadow-md">$7.90</div>
+                </div>
+
+                <div class="flex flex-col gap-8">
+                    <button
+                        class="bg-text-dark text-white p-5 pr-10 rounded-full inline-flex items-center gap-[30px] text-lg font-medium shadow-2xl hover:scale-105 hover:bg-black transition-transform w-fit group">
+                        <div
+                            class="w-[50px] h-[50px] bg-primary-yellow rounded-full flex justify-center items-center text-text-dark">
+                            <i data-lucide="shopping-bag" class="w-5 h-5 fill-current"></i>
+                        </div>
+                        Buy Now
+                    </button>
+
+                    <!-- Pagination -->
+                    <div class="flex gap-2.5 pt-4">
+                        <div class="w-8 h-1 bg-primary-yellow rounded-full cursor-pointer"></div>
+                        <div class="w-5 h-1 bg-white/50 rounded-full cursor-pointer hover:bg-white transition-colors">
+                        </div>
+                        <div class="w-5 h-1 bg-white/50 rounded-full cursor-pointer hover:bg-white transition-colors">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chef Widget -->
+            <div
+                class="mt-auto bg-black/40 backdrop-blur-md p-5 rounded-[25px] border border-white/10 flex items-center gap-5 transition-all hover:bg-black/60 hover:border-primary-yellow hover:translate-x-1 shadow-[0_15px_40px_rgba(0,0,0,0.1)] cursor-pointer chef-widget-trigger group">
+                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80"
+                    alt="Chef" class="w-[90px] h-[90px] rounded-full object-cover ring-2 ring-primary-yellow/50">
+
+                <div>
+                    <h4 class="text-xl font-semibold mb-1 text-white">Chef's Choice</h4>
+                    <div class="flex gap-3 text-sm text-gray-300 items-center">
+                        <span class="flex items-center gap-1"><i data-lucide="award"
+                                class="w-4 h-4 text-primary-yellow"></i> Top Recommendation</span>
+                    </div>
+                </div>
+
+                <div class="ml-auto text-right">
+                    <span class="block text-sm text-gray-300 mb-1">See menu types</span>
+                    <a href="menu.html"
+                        class="flex items-center gap-2 text-white font-bold hover:text-primary-yellow transition-colors group/btn">
+                        View Menu <i data-lucide="arrow-right"
+                            class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Image Container (Centered Over Right Side) -->
+        <div class="absolute inset-0 pointer-events-none hidden md:block">
+            <!-- Coupon Widget -->
+            <div class="absolute bottom-[60px] right-[80px] w-[500px] text-white custom-widget pointer-events-auto">
+                <div class="flex justify-between text-base text-gray-300 mb-5 pr-2.5">
+                    <span>Discount coupon</span>
+                    <div class="flex items-center gap-2.5">
+                        <i data-lucide="chevron-left"
+                            class="w-4 h-4 cursor-pointer hover:text-primary-yellow opacity-50"></i>
+                        <span class="text-xs">Prev</span>
+                        <span class="text-xs">Next</span>
+                        <i data-lucide="chevron-right" class="w-4 h-4 cursor-pointer hover:text-primary-yellow"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="glass-panel p-5 rounded-[25px] flex items-center gap-5 transition-all hover:bg-white/10 hover:border-white/40">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+                        alt="Pizza" class="w-[90px] h-[90px] rounded-full object-cover">
+
+                    <div>
+                        <h4 class="text-xl font-medium mb-2">Mexicoo Pizza</h4>
+                        <div class="flex gap-3 text-sm text-gray-300 items-center">
+                            <span class="flex items-center gap-1"><i data-lucide="flame"
+                                    class="w-3.5 h-3.5 text-orange-500 fill-orange-500"></i> 78 Calories</span>
+                        </div>
+                    </div>
+
+                    <div class="ml-auto text-right">
+                        <span class="block text-sm line-through text-gray-400">$7,90</span>
+                        <span class="text-[28px] font-semibold">$7.90</span>
+                        <div
+                            class="bg-primary-yellow text-text-dark text-xs py-1.5 px-4 rounded-full flex items-center gap-2 ml-auto mt-2.5 w-fit">
+                            <i data-lucide="clock" class="w-3 h-3"></i> 30 dk.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Popular Menu Section -->
+    <section class="py-24 px-6 md:px-16 bg-[#fafafa]" id="menu-section">
+        <div class="text-center mb-12 section-header">
+            <h2 class="text-[42px] text-text-dark font-bold mb-4">Our Popular Menu</h2>
+            <p class="text-text-gray text-base max-w-[600px] mx-auto">Explore the finest flavors from Fairy Cafe
+                Bulawayo. From hearty breakfasts to fresh sushi, we have it all.</p>
+        </div>
+
+        <!-- Menu Tabs -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12" id="menu-tabs">
+            <button
+                class="menu-tab active px-8 py-3 rounded-full text-sm font-semibold transition-all bg-text-dark text-white shadow-xl"
+                data-category="breakfast">Breakfast</button>
+            <button
+                class="menu-tab px-8 py-3 rounded-full text-sm font-semibold transition-all bg-white text-text-gray hover:text-text-dark hover:shadow-md"
+                data-category="burgers">Burgers</button>
+            <button
+                class="menu-tab px-8 py-3 rounded-full text-sm font-semibold transition-all bg-white text-text-gray hover:text-text-dark hover:shadow-md"
+                data-category="pastas">Pastas</button>
+            <button
+                class="menu-tab px-8 py-3 rounded-full text-sm font-semibold transition-all bg-white text-text-gray hover:text-text-dark hover:shadow-md"
+                data-category="pizzas">Pizzas</button>
+            <button
+                class="menu-tab px-8 py-3 rounded-full text-sm font-semibold transition-all bg-white text-text-gray hover:text-text-dark hover:shadow-md"
+                data-category="sushi">Sushi</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-[1200px] mx-auto min-h-[500px]" id="menu-container">
+            <!-- Content dynamically injected by JS -->
+        </div>
+
+        <!-- View Full Menu CTA -->
+        <div class="text-center mt-16">
+            <a href="menu.html"
+                class="inline-flex items-center gap-3 px-10 py-5 bg-white border border-gray-100 rounded-full text-lg font-semibold text-text-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all group">
+                View Full Menu
+                <div
+                    class="w-10 h-10 bg-primary-yellow rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Why Choose Fairy Cafe Section -->
+    <section class="py-24 px-6 md:px-16 bg-bg-light" id="features-section">
+        <div class="text-center mb-16 section-header">
+            <h2 class="text-[42px] text-text-dark font-bold mb-4">Why Choose Fairy Cafe?</h2>
+            <p class="text-text-gray text-base max-w-[600px] mx-auto">We provide the best service in town. Quality,
+                Speed and Taste are our priorities.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1200px] mx-auto">
+            <!-- Item 1: Freshly Harvested -->
+            <div
+                class="bg-white p-10 rounded-[40px] shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-gray-100 feature-item opacity-0 translate-y-10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="w-16 h-16 bg-primary-yellow/10 rounded-2xl flex justify-center items-center mb-6 text-primary-yellow">
+                    <i data-lucide="leaf" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-text-dark mb-4">Freshly Harvested</h3>
+                <p class="text-text-gray leading-relaxed">
+                    We partner with local Bulawayo farmers to bring the crispest, organic ingredients to your plate
+                    every single day.
+                </p>
+            </div>
+
+            <!-- Item 2: Speedy Service -->
+            <div
+                class="bg-white p-10 rounded-[40px] shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-gray-100 feature-item opacity-0 translate-y-10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="w-16 h-16 bg-primary-yellow/10 rounded-2xl flex justify-center items-center mb-6 text-primary-yellow">
+                    <i data-lucide="zap" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-text-dark mb-4">Speedy Service</h3>
+                <p class="text-text-gray leading-relaxed">
+                    Time is magic. Our streamlined kitchen ensures your favorites are ready for pickup or delivery in
+                    record time without compromising quality.
+                </p>
+            </div>
+
+            <!-- Item 3: Master Chefs -->
+            <div
+                class="bg-white p-10 rounded-[40px] shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-gray-100 feature-item opacity-0 translate-y-10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="w-16 h-16 bg-primary-yellow/10 rounded-2xl flex justify-center items-center mb-6 text-primary-yellow">
+                    <i data-lucide="utensils" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-text-dark mb-4">Master Chefs</h3>
+                <p class="text-text-gray leading-relaxed">
+                    Our culinary team brings years of international experience blended with local soul to create truly
+                    unique flavor profiles in every dish.
+                </p>
+            </div>
+
+            <!-- Item 4: Authenticity -->
+            <div
+                class="bg-white p-10 rounded-[40px] shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-gray-100 feature-item opacity-0 translate-y-10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="w-16 h-16 bg-primary-yellow/10 rounded-2xl flex justify-center items-center mb-6 text-primary-yellow">
+                    <i data-lucide="heart" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-text-dark mb-4">Authenticity</h3>
+                <p class="text-text-gray leading-relaxed">
+                    Every recipe tells a story. We stay true to our Bulawayo roots while innovating with modern global
+                    inspirations for a magical taste.
+                </p>
+            </div>
+
+            <!-- Item 5: Eco-Conscious -->
+            <div
+                class="bg-white p-10 rounded-[40px] shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-gray-100 feature-item opacity-0 translate-y-10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="w-16 h-16 bg-primary-yellow/10 rounded-2xl flex justify-center items-center mb-6 text-primary-yellow">
+                    <i data-lucide="recycle" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-text-dark mb-4">Eco-Conscious</h3>
+                <p class="text-text-gray leading-relaxed">
+                    We love our planet as much as our food. Our packaging is 100% biodegradable and we minimize waste in
+                    every step of our process.
+                </p>
+            </div>
+
+            <!-- Item 6: Community Heart -->
+            <div
+                class="bg-white p-10 rounded-[40px] shadow-[0_10px_30px_rgba(0,0,0,0.03)] border border-gray-100 feature-item opacity-0 translate-y-10 hover:shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:-translate-y-2 transition-all duration-300">
+                <div
+                    class="w-16 h-16 bg-primary-yellow/10 rounded-2xl flex justify-center items-center mb-6 text-primary-yellow">
+                    <i data-lucide="users" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-text-dark mb-4">Community Heart</h3>
+                <p class="text-text-gray leading-relaxed">
+                    More than a cafe. We support local artists and charities, creating a warm space where Bulawayo's
+                    community can truly come together.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About/Story Section -->
+    <section class="py-24 px-6 md:px-16 bg-white relative overflow-hidden" id="about-section">
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary-yellow/5 to-transparent"></div>
+        <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
+            <div class="order-2 md:order-1 about-text opacity-0 -translate-x-10">
+                <div
+                    class="inline-block px-4 py-2 bg-primary-yellow/10 rounded-full text-sm font-semibold text-text-dark mb-6">
+                    Our Story
+                </div>
+                <h2 class="text-[48px] font-bold text-text-dark mb-6 leading-tight">
+                    Where Magic Meets <span class="text-primary-yellow">Flavor</span>
+                </h2>
+                <p class="text-text-gray text-lg leading-relaxed mb-6">
+                    Since our humble beginnings in Bulawayo, Fairy Cafe has been dedicated to bringing you the finest
+                    culinary experiences. Our passion for exceptional food, warm hospitality, and creating memorable
+                    moments has made us a beloved destination for food lovers.
+                </p>
+                <p class="text-text-gray leading-relaxed mb-8">
+                    From our signature breakfast dishes to our exquisite sushi platters, every item on our menu is
+                    crafted with love, using only the freshest ingredients and traditional techniques passed down
+                    through generations.
+                </p>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary-yellow mb-2">15+</div>
+                        <div class="text-sm text-text-gray">Years Experience</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary-yellow mb-2">100+</div>
+                        <div class="text-sm text-text-gray">Menu Items</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary-yellow mb-2">50k+</div>
+                        <div class="text-sm text-text-gray">Happy Customers</div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-1 md:order-2 about-image opacity-0 translate-x-10">
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-full h-full bg-primary-yellow/20 rounded-[2rem]"></div>
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80"
+                        alt="Fairy Cafe Interior"
+                        class="relative rounded-[2rem] shadow-2xl w-full h-[500px] object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Signature Dishes -->
+    <section class="py-24 px-6 md:px-16 bg-gradient-to-b from-bg-light to-white">
+        <div class="text-center mb-16">
+            <h2 class="text-[42px] text-text-dark font-bold mb-4">Signature Dishes</h2>
+            <p class="text-text-gray text-base max-w-[600px] mx-auto">
+                Discover our most loved and celebrated dishes, crafted to perfection
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-[1200px] mx-auto">
+            <!-- Dish 1 -->
+            <div
+                class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all group cursor-pointer signature-dish">
+                <div class="relative overflow-hidden h-[280px]">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80"
+                        alt="Hungry Man Breakfast"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div
+                        class="absolute top-4 right-4 bg-primary-yellow text-text-dark px-4 py-2 rounded-full font-bold text-sm">
+                        Best Seller
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-text-dark mb-3">Hungry Man's Breakfast</h3>
+                    <p class="text-text-gray text-sm mb-6 leading-relaxed">
+                        A hearty feast with eggs, bacon, sausage, mushrooms, and our signature potato wedges
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-3xl font-bold text-text-dark">$12.00</span>
+                        <button
+                            class="px-6 py-3 bg-text-dark text-white rounded-full hover:bg-primary-yellow hover:text-text-dark transition-colors font-semibold">
+                            Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dish 2 -->
+            <div
+                class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all group cursor-pointer signature-dish opacity-0 translate-y-10">
+                <div class="relative overflow-hidden h-[280px]">
+                    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80"
+                        alt="Tiger Roll Sushi"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div
+                        class="absolute top-4 right-4 bg-primary-yellow text-text-dark px-4 py-2 rounded-full font-bold text-sm">
+                        Chef's Pick
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-text-dark mb-3">Tiger Roll</h3>
+                    <p class="text-text-gray text-sm mb-6 leading-relaxed">
+                        Colorful, zesty sushi roll with fresh salmon, avocado, and our secret sauce
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-3xl font-bold text-text-dark">$10.00</span>
+                        <button
+                            class="px-6 py-3 bg-text-dark text-white rounded-full hover:bg-primary-yellow hover:text-text-dark transition-colors font-semibold">
+                            Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dish 3 -->
+            <div
+                class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all group cursor-pointer signature-dish opacity-0 translate-y-10">
+                <div class="relative overflow-hidden h-[280px]">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
+                        alt="The Fairy Pizza"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div
+                        class="absolute top-4 right-4 bg-primary-yellow text-text-dark px-4 py-2 rounded-full font-bold text-sm">
+                        Signature
+                    </div>
+                </div>
+                <div class="p-8">
+                    <h3 class="text-2xl font-bold text-text-dark mb-3">The Fairy Pizza</h3>
+                    <p class="text-text-gray text-sm mb-6 leading-relaxed">
+                        Our signature pizza with premium toppings and a perfectly crispy crust
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-3xl font-bold text-text-dark">$14.00</span>
+                        <button
+                            class="px-6 py-3 bg-text-dark text-white rounded-full hover:bg-primary-yellow hover:text-text-dark transition-colors font-semibold">
+                            Order Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials -->
+    <section class="py-24 px-6 md:px-16 bg-bg-dark text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute top-10 left-10 text-[200px] font-bold">"</div>
+            <div class="absolute bottom-10 right-10 text-[200px] font-bold rotate-180">"</div>
+        </div>
+        <div class="text-center mb-16 relative z-10">
+            <h2 class="text-[42px] font-bold mb-4">What Our Customers Say</h2>
+            <p class="text-gray-400 text-base max-w-[600px] mx-auto">
+                Real experiences from real people who love Fairy Cafe
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1200px] mx-auto relative z-10">
+            <!-- Testimonial 1 -->
+            <div
+                class="bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-all testimonial-card opacity-0 translate-y-10">
+                <div class="flex gap-1 text-primary-yellow mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-6 italic">
+                    "The best breakfast in Bulawayo! The Hungry Man's Breakfast is absolutely incredible. Fresh
+                    ingredients, generous portions, and amazing service every time."
+                </p>
+                <div class="flex items-center gap-4">
+                    <div
+                        class="w-12 h-12 bg-primary-yellow rounded-full flex items-center justify-center text-text-dark font-bold">
+                        TM
+                    </div>
+                    <div>
+                        <div class="font-semibold">Tendai Moyo</div>
+                        <div class="text-sm text-gray-400">Regular Customer</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div
+                class="bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-all testimonial-card opacity-0 translate-y-10">
+                <div class="flex gap-1 text-primary-yellow mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-6 italic">
+                    "Their sushi is authentic and delicious! As someone who has traveled extensively, I can say Fairy
+                    Cafe's sushi rivals the best I've had anywhere."
+                </p>
+                <div class="flex items-center gap-4">
+                    <div
+                        class="w-12 h-12 bg-primary-yellow rounded-full flex items-center justify-center text-text-dark font-bold">
+                        NK
+                    </div>
+                    <div>
+                        <div class="font-semibold">Nomsa Khumalo</div>
+                        <div class="text-sm text-gray-400">Food Blogger</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div
+                class="bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-all testimonial-card opacity-0 translate-y-10">
+                <div class="flex gap-1 text-primary-yellow mb-6">
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-6 italic">
+                    "A gem in Bulawayo! The atmosphere is wonderful, staff is friendly, and the food is always
+                    consistently excellent. My family's favorite restaurant!"
+                </p>
+                <div class="flex items-center gap-4">
+                    <div
+                        class="w-12 h-12 bg-primary-yellow rounded-full flex items-center justify-center text-text-dark font-bold">
+                        PM
+                    </div>
+                    <div>
+                        <div class="font-semibold">Peter Mabena</div>
+                        <div class="text-sm text-gray-400">Local Resident</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="py-24 px-6 md:px-16 bg-white">
+        <div class="text-center mb-16">
+            <h2 class="text-[42px] text-text-dark font-bold mb-4">Photo Gallery</h2>
+            <p class="text-text-gray text-base max-w-[600px] mx-auto">
+                A glimpse into the magic of Fairy Cafe
+            </p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-[1200px] mx-auto">
+            <div
+                class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
+                <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=400&q=80"
+                    alt="Pancakes"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div
+                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="maximize-2" class="w-8 h-8 text-white"></i>
+                </div>
+            </div>
+            <div
+                class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80"
+                    alt="Pizza"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div
+                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="maximize-2" class="w-8 h-8 text-white"></i>
+                </div>
+            </div>
+            <div
+                class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
+                <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=400&q=80"
+                    alt="Burgers"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div
+                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="maximize-2" class="w-8 h-8 text-white"></i>
+                </div>
+            </div>
+            <div
+                class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
+                <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=400&q=80"
+                    alt="Sushi"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div
+                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="maximize-2" class="w-8 h-8 text-white"></i>
+                </div>
+            </div>
+            <div
+                class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer md:col-span-2 gallery-item opacity-0 translate-y-10">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"
+                    alt="Restaurant Interior"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div
+                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="maximize-2" class="w-8 h-8 text-white"></i>
+                </div>
+            </div>
+            <div
+                class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=400&q=80"
+                    alt="Dining Experience"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div
+                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="maximize-2" class="w-8 h-8 text-white"></i>
+                </div>
+            </div>
+            <div
+                class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80"
+                    alt="Salad"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                <div
+                    class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="maximize-2" class="w-8 h-8 text-white"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Hours -->
+    <section class="py-24 px-6 md:px-16 bg-bg-light">
+        <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Location Info -->
+            <div class="bg-white p-10 rounded-[2rem] shadow-lg">
+                <h3 class="text-3xl font-bold text-text-dark mb-8">Visit Us</h3>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 bg-primary-yellow/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="map-pin" class="w-6 h-6 text-primary-yellow"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-text-dark mb-1">Address</div>
+                            <div class="text-text-gray">Joina City, Bulawayo<br>Zimbabwe</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 bg-primary-yellow/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="phone" class="w-6 h-6 text-primary-yellow"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-text-dark mb-1">Phone</div>
+                            <div class="text-text-gray">+263 XX XXX XXXX</div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 bg-primary-yellow/10 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="mail" class="w-6 h-6 text-primary-yellow"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold text-text-dark mb-1">Email</div>
+                            <div class="text-text-gray">info@fairycafe.co.zw</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operating Hours -->
+            <div class="bg-white p-10 rounded-[2rem] shadow-lg">
+                <h3 class="text-3xl font-bold text-text-dark mb-8">Opening Hours</h3>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                        <span class="font-semibold text-text-dark">Monday - Friday</span>
+                        <span class="text-text-gray">7:00 AM - 10:00 PM</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                        <span class="font-semibold text-text-dark">Saturday</span>
+                        <span class="text-text-gray">8:00 AM - 11:00 PM</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-gray-100">
+                        <span class="font-semibold text-text-dark">Sunday</span>
+                        <span class="text-text-gray">8:00 AM - 9:00 PM</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3">
+                        <span class="font-semibold text-text-dark">Public Holidays</span>
+                        <span class="text-text-gray">9:00 AM - 8:00 PM</span>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-100">
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="flex-1 px-6 py-4 bg-primary-yellow text-text-dark rounded-full font-semibold text-center hover:bg-text-dark hover:text-white transition-colors">
+                            Get Directions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation/Order CTA -->
+    <section
+        class="py-24 px-6 md:px-16 bg-gradient-to-br from-bg-dark via-text-dark to-bg-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-primary-yellow rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary-yellow rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-[800px] mx-auto text-center relative z-10">
+            <h2 class="text-[48px] md:text-[64px] font-bold mb-6 leading-tight">
+                Ready to Experience <span class="text-primary-yellow">Magic</span>?
+            </h2>
+            <p class="text-xl text-gray-300 mb-12 leading-relaxed">
+                Reserve your table now or order online for delivery. Experience the finest flavors Bulawayo has to
+                offer.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <button
+                    class="px-10 py-5 bg-primary-yellow text-text-dark rounded-full font-bold text-lg hover:bg-white hover:scale-105 transition-all shadow-2xl flex items-center justify-center gap-3">
+                    <i data-lucide="calendar" class="w-6 h-6"></i>
+                    Book a Table
+                </button>
+                <button
+                    class="px-10 py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white/20 rounded-full font-bold text-lg hover:bg-white hover:text-text-dark hover:scale-105 transition-all flex items-center justify-center gap-3">
+                    <i data-lucide="shopping-bag" class=" h-6"></i>
+                    Order Online
+                </button>
+            </div>
+            <div class="mt-12 flex items-center justify-center gap-8 text-sm text-gray-400">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-primary-yellow"></i>
+                    <span>Fresh Ingredients</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-primary-yellow"></i>
+                    <span>Fast Service</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check-circle" class="w-5 h-5 text-primary-yellow"></i>
+                    <span>Best Quality</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-bg-dark text-white pt-20 pb-10 px-6 md:px-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-[1200px] mx-auto mb-16">
+            <div class="col-span-1">
+                <div class="text-3xl font-bold mb-6">Fairy Cafe<span class="text-primary-yellow">.</span></div>
+                <p class="text-[14px] text-[#aaa] leading-7 mb-6">Delicious food delivered to your door. Experience the
+                    best flavors in town with Fairy Cafe.</p>
+                <div class="flex gap-4">
+                    <a href="#"
+                        class="w-10 h-10 bg-white/5 rounded-full flex justify-center items-center text-white hover:bg-primary-yellow hover:text-text-dark hover:-translate-y-1 transition-all"><i
+                            data-lucide="facebook" class="w-5 h-5"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 bg-white/5 rounded-full flex justify-center items-center text-white hover:bg-primary-yellow hover:text-text-dark hover:-translate-y-1 transition-all"><i
+                            data-lucide="twitter" class="w-5 h-5"></i></a>
+                    <a href="#"
+                        class="w-10 h-10 bg-white/5 rounded-full flex justify-center items-center text-white hover:bg-primary-yellow hover:text-text-dark hover:-translate-y-1 transition-all"><i
+                            data-lucide="instagram" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                <ul class="space-y-4 text-sm text-[#aaa]">
+                    <li><a href="#" class="hover:text-primary-yellow hover:pl-1 transition-all">About Us</a></li>
+                    <li><a href="#" class="hover:text-primary-yellow hover:pl-1 transition-all">Our Menu</a></li>
+                    <li><a href="#" class="hover:text-primary-yellow hover:pl-1 transition-all">Special Offers</a></li>
+                    <li><a href="#" class="hover:text-primary-yellow hover:pl-1 transition-all">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold mb-6">Services</h4>
+                <ul class="space-y-4 text-sm text-[#aaa]">
+                    <li><a href="#" class="hover:text-primary-yellow hover:pl-1 transition-all">Online Ordering</a></li>
+                    <li><a href="#" class="hover:text-primary-yellow hover:pl-1 transition-all">Table Booking</a></li>
+                    <li><a href="#" class="hover:text-primary-yellow hover:pl-1 transition-all">Catering</a></li>
+                    <li><a href="#" class="hover:text-primary-yellow hover:pl-1 transition-all">Gift Cards</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+                <ul class="space-y-4 text-sm text-[#aaa]">
+                    <li class="flex items-center gap-3"><i data-lucide="phone" class="w-4 h-4"></i> +1 (234) 567-890
+                    </li>
+                    <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> hello@fode.com</li>
+                    <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i> 123 Food Street,
+                        NY</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center pt-10 border-t border-white/5 text-[#777] text-sm">
+            <p>&copy; 2026 Fairy Cafe. All rights reserved. Designed with passion for food.</p>
+        </div>
+    </footer>
+
+    <!-- Init Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // GSAP Animations
+
+        // Hero Content Entrance
+        gsap.from(".hero-content > *", {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        // Main Plate Rotation/Entrance
+        gsap.from(".main-plate", {
+            rotation: 180,
+            scale: 0.8,
+            opacity: 0,
+            duration: 1.5,
+            ease: "back.out(1.7)",
+            delay: 0.5
+        });
+
+        // Widgets Entrance
+        gsap.from(".chef-widget-trigger", { x: -50, opacity: 0, duration: 1, ease: "power3.out" });
+        gsap.from(".custom-widget", { x: 50, opacity: 0, duration: 1, ease: "power3.out" });
+
+        // Menu Data
+        const menuData = {
+            breakfast: [
+                { name: "Hungry Man Breakfast", price: "$12.00", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80", rating: "5.0" },
+                { name: "Breakfast Quesadillas", price: "$7.00", img: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=300&q=80", rating: "4.8" },
+                { name: "Vegetarian Bowl", price: "$8.00", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=300&q=80", rating: "4.7" }
+            ],
+            burgers: [
+                { name: "Big Fairy Burger", price: "$12.00", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300&q=80", rating: "5.0" },
+                { name: "Bacon & Brie", price: "$9.00", img: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=300&q=80", rating: "4.9" },
+                { name: "Supreme Cheese", price: "$10.00", img: "https://images.unsplash.com/photo-1550317143-b302d906411f?auto=format&fit=crop&w=300&q=80", rating: "4.8" }
+            ],
+            pastas: [
+                { name: "Chicken Alfredo", price: "$12.00", img: "https://images.unsplash.com/photo-1645112481338-3014506af548?auto=format&fit=crop&w=300&q=80", rating: "5.0" },
+                { name: "Bolognaise", price: "$9.00", img: "https://images.unsplash.com/photo-1598866539627-9a6983931499?auto=format&fit=crop&w=300&q=80", rating: "4.7" },
+                { name: "Lasagna", price: "$12.00", img: "https://images.unsplash.com/photo-1574894709322-78836d35b99e?auto=format&fit=crop&w=300&q=80", rating: "4.9" }
+            ],
+            pizzas: [
+                { name: "The Fairy Pizza", price: "$14.00", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&q=80", rating: "5.0" },
+                { name: "Chicken Mushroom", price: "$11.00", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80", rating: "4.8" },
+                { name: "Bacon Avo & Feta", price: "$9.00", img: "https://images.unsplash.com/photo-1593504049359-7b797486fab6?auto=format&fit=crop&w=300&q=80", rating: "4.9" }
+            ],
+            sushi: [
+                { name: "Tiger Roll", price: "$10.00", img: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=300&q=80", rating: "5.0" },
+                { name: "Salmon Sashimi", price: "$6.00", img: "https://images.unsplash.com/photo-1534422298391-e4f8c170db06?auto=format&fit=crop&w=300&q=80", rating: "4.8" },
+                { name: "Prawn California", price: "$8.00", img: "https://images.unsplash.com/photo-1559466273-d95e72debaf8?auto=format&fit=crop&w=300&q=80", rating: "4.7" }
+            ]
+        };
+
+        const renderMenu = (category) => {
+            const container = document.getElementById('menu-container');
+            const items = menuData[category];
+
+            container.innerHTML = items.map(item => `
+                <div class="bg-white rounded-[30px] p-8 shadow-[0_15px_40px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-2.5 transition-all text-center relative cursor-pointer group menu-card opacity-0 translate-y-10">
+                    <img src="${item.img}" alt="${item.name}" class="w-[200px] h-[200px] object-cover rounded-full mx-auto mb-5 drop-shadow-lg p-2 bg-[#fdfdfd] border border-gray-50">
+                    <h3 class="text-[22px] text-text-dark font-semibold mb-2.5">${item.name}</h3>
+                    <div class="flex justify-center gap-0.5 text-primary-yellow text-sm mb-4">
+                        <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+                        <span class="ml-1 text-gray-400">(${item.rating})</span>
+                    </div>
+                    <div class="text-2xl font-bold text-text-dark">${item.price}</div>
+                    
+                    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 w-[45px] h-[45px] bg-text-dark text-white rounded-full flex justify-center items-center shadow-lg opacity-0 invisible group-hover:bottom-8 group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                        <i data-lucide="plus" class="w-5 h-5"></i>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+
+            gsap.to(".menu-card", {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+        };
+
+        // Tab Switching Logic
+        document.querySelectorAll('.menu-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update tabs
+                document.querySelectorAll('.menu-tab').forEach(t => {
+                    t.classList.remove('active', 'bg-text-dark', 'text-white', 'shadow-xl');
+                    t.classList.add('bg-white', 'text-text-gray');
+                });
+                tab.classList.add('active', 'bg-text-dark', 'text-white', 'shadow-xl');
+                tab.classList.remove('bg-white', 'text-text-gray');
+
+                // Animate container exit
+                gsap.to(".menu-card", {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.3,
+                    stagger: 0.05,
+                    onComplete: () => renderMenu(tab.dataset.category)
+                });
+            });
+        });
+
+        // Initialize Menu
+        renderMenu('breakfast');
+
+        // Scroll Animations for Section Headers
+        document.querySelectorAll('.section-header, .text-center').forEach(header => {
+            gsap.from(header, {
+                scrollTrigger: {
+                    trigger: header,
+                    start: "top 90%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Why Choose Us Items Entrance
+        gsap.to(".feature-item", {
+            scrollTrigger: {
+                trigger: "#features-section",
+                start: "top 80%",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: "power3.out"
+        });
+
+        // About Section Animations
+        gsap.to(".about-text", {
+            scrollTrigger: {
+                trigger: "#about-section",
+                start: "top 80%",
+            },
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.to(".about-image", {
+            scrollTrigger: {
+                trigger: "#about-section",
+                start: "top 80%",
+            },
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        // Signature Dishes Entrance
+        gsap.to(".signature-dish", {
+            scrollTrigger: {
+                trigger: ".signature-dish",
+                start: "top 85%",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Testimonials Entrance
+        gsap.to(".testimonial-card", {
+            scrollTrigger: {
+                trigger: ".testimonial-card",
+                start: "top 85%",
+            },
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power2.out"
+        });
+
+        // Gallery Items Entrance
+        gsap.to(".gallery-item", {
+            scrollTrigger: {
+                trigger: ".gallery-item",
+                start: "top 90%",
+            },
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power2.out"
+        });
+
+    </script>
+</body>
+
+</html>

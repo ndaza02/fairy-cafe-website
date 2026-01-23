@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Menu - Fairy Cafe Bulawayo</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-yellow': '#1d691b',
+                        'text-dark': '#2B2B2B',
+                        'text-gray': '#7c7c7c',
+                        'bg-light': '#F2F2F2',
+                        'bg-dark': '#111',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .menu-category-card {
+            transition: all 0.3s ease;
+        }
+
+        .menu-category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1d691b;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #154d14;
+        }
+
+        .nav-link-active {
+            color: #2B2B2B;
+            padding-left: 0.8rem;
+            border-left: 3px solid #1d691b;
+            font-weight: 700;
+            background: rgba(29, 105, 27, 0.05);
+        }
+
+        .menu-item {
+            opacity: 1;
+            /* Ensure visible by default, GSAP will handle entrance if working */
+        }
+    </style>
+</head>
+
+<body class="bg-bg-light min-h-screen text-text-dark overflow-x-hidden">
+
+    <!-- Navigation Overlay -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 py-4 md:px-16 flex justify-between items-center">
+        <div class="flex items-center text-2xl font-bold text-text-dark">
+            Fairy Cafe<span class="text-primary-yellow">.</span>
+        </div>
+        <a href="index.html"
+            class="flex items-center gap-2 text-sm font-medium hover:text-primary-yellow transition-colors group">
+            <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
+            Back to Home
+        </a>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="pt-32 pb-16 px-6 md:px-16 bg-white">
+        <div class="max-w-[1200px] mx-auto text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 italic">Full Menu</h1>
+            <p class="text-text-gray text-lg max-w-2xl mx-auto mb-10 text-balance">Explore our complete collection from
+                Fairy Cafe Bulawayo. 16 categories and over 100 dishes prepared daily.</p>
+
+            <!-- Search Bar -->
+            <div class="relative max-w-xl mx-auto">
+                <i data-lucide="search" class="absolute left-5 top-1/2 -translate-y-1/2 text-text-gray w-5 h-5"></i>
+                <input type="text" id="menu-search" placeholder="Search delicious food..."
+                    class="w-full py-4 pl-14 pr-6 rounded-full border border-gray-200 outline-none focus:border-primary-yellow focus:ring-4 focus:ring-primary-yellow/10 transition-all text-lg shadow-sm">
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu Content -->
+    <main class="py-16 px-6 md:px-16">
+        <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12">
+
+            <!-- Sidebar Navigation -->
+            <aside class="hidden lg:block sticky top-24 h-[calc(100vh-120px)] overflow-y-auto pr-4 custom-scrollbar">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-text-gray mb-6">Menu Categories</h3>
+                <nav id="category-nav" class="flex flex-col gap-1">
+                    <!-- Links will be injected here -->
+                </nav>
+            </aside>
+
+            <!-- Menu Sections -->
+            <div id="menu-sections" class="space-y-16">
+                <!-- Categories and items will be injected here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-bg-dark text-white py-12 px-6 md:px-16 text-center">
+        <div class="text-2xl font-bold mb-6 italic">Fairy Cafe<span class="text-primary-yellow">.</span></div>
+        <p class="text-gray-400 text-sm italic mb-8">Fairy Cafe Bulawayo - Taste the Magic</p>
+        <div class="pt-8 border-t border-white/5 text-gray-500 text-xs">
+            &copy; 2026 Fairy Cafe. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // COMPREHENSIVE Menu Data from menu.md
+        const menuData = [
+            {
+                category: "Bulawayo Breakfast",
+                items: [
+                    { name: "Breakfast Quesadillas", price: "$7.00", desc: "Filled with fluffy scrambled eggs, melted cheese & tomato & soup on the side" },
+                    { name: "Carnivore Breakfast", price: "$5.00", desc: "2 eggs, 2 rashers of bacon, 1 sausage" },
+                    { name: "Club Sandwich", price: "$7.00", desc: "Baked Ham/Cheese | Chicken Mayo | Bacon | Egg & Cheese | Coleslaw Sandwich" },
+                    { name: "Early Bird Breakfast", price: "$8.00", desc: "Toast 2 slices, 2 eggs, 50g cherry tomatoes, 2 rashers of bacon" },
+                    { name: "Fairy Breakfast", price: "$5.00", desc: "1 egg, 2 rashers of bacon, tomato slice, 1/2 a sausage & small chips" },
+                    { name: "Hungry Man’s Breakfast", price: "$12.00", desc: "2 eggs, country style sausage, tomato slice, 3 rashers of bacon, mushroom, 300g Rump/fillet & potato wedges" },
+                    { name: "Muesli (V)", price: "$6.00", desc: "Yoghurt & Mixed Fruits" },
+                    { name: "Omelette", price: "$5.00", desc: "Bacon omelette, veggie omelette, mushroom omelette, or Lamb & feta omelette" },
+                    { name: "Sandwiches", price: "$5.00", desc: "Baked Ham/Cheese | Chicken Mayo | Bacon | Egg & Cheese | Coleslaw Sandwich (options)" },
+                    { name: "Vegetarian Breakfast Bowl (V)", price: "$8.00", desc: "Poached egg, creamed spinach, roasted butternut, mushroom & toast" },
+                    { name: "Waffle Delight", price: "$6.00", desc: "1 waffle, baby spinach, bacon, egg, syrup" }
+                ]
+            },
+            {
+                category: "Coffee and Teas",
+                items: [
+                    { name: "Americano", price: "$2.00", desc: "Classic black coffee" },
+                    { name: "Cappuccino (Reg/Large)", price: "$2.50 / $3.00", desc: "Rich and creamy" },
+                    { name: "Teas", price: "$1.50", desc: "Assorted select teas" },
+                    { name: "Mochaccino", price: "$2.50", desc: "Coffee chocolate fusion" },
+                    { name: "Latte’s", price: "$3.00", desc: "Smooth milky coffee" },
+                    { name: "Boba Tea", price: "$3.00", desc: "Refreshing bubble tea" },
+                    { name: "Coffee Freezo", price: "$2.50", desc: "Ice blended coffee" }
+                ]
+            },
+            {
+                category: "Confectionery",
+                items: [
+                    { name: "Alikrukeli", price: "$0.75", desc: "Sweet treat" },
+                    { name: "Croissants", price: "$1.50", desc: "Buttery pastry" },
+                    { name: "Maringue Tart", price: "$1.50", desc: "Light and sweet" },
+                    { name: "Brownies", price: "$2.00", desc: "Classic chocolate brownies" },
+                    { name: "Filled Brownies", price: "$2.50", desc: "Decadent filled brownies" },
+                    { name: "Cupcakes / Muffins", price: "$1.00", desc: "Fresh baked daily" },
+                    { name: "Custard Croffins", price: "$1.00", desc: "Croissant muffin hybrid with custard" },
+                    { name: "Rosquillas", price: "$0.75", desc: "Specialty doughnut" },
+                    { name: "Sweet Buns / Rolls", price: "$1.00", desc: "Soft sweet breads" },
+                    { name: "Madeira", price: "$2.00", desc: "Classic sponge cake" },
+                    { name: "Cake Slices", price: "$3.00", desc: "Assorted premium cakes" },
+                    { name: "Cheese Cake", price: "$4.00", desc: "Rich creamy cheesecake" },
+                    { name: "Chocolate Mousse", price: "$3.50", desc: "Silky chocolate dessert" },
+                    { name: "Choc Mousse Tub", price: "$3.00", desc: "To-go treat" },
+                    { name: "Trifle", price: "$2.50", desc: "Layered sponge and custard" },
+                    { name: "Lemon Curd", price: "$1.25", desc: "Zesty lemon dessert" }
+                ]
+            },
+            {
+                category: "Bulawayo Burgers",
+                items: [
+                    { name: "Bacon & Brie", price: "$9.00", desc: "Crispy bacon with creamy brie cheese creating a symphony of flavours" },
+                    { name: "BBQ Cheese", price: "$6.00", desc: "Grilled patty smothered in tangy BBQ sauce & melted cheese" },
+                    { name: "Big Fairy Burger", price: "$12.00", desc: "2 beef patties, 2 cheese slices, 4 rashers of bacon, avocado, tomato, lettuce" },
+                    { name: "Chicken Crunchy", price: "$7.00", desc: "Crumbed chicken breast, lettuce, tomato & chips" },
+                    { name: "Pork Rib Burger", price: "$7.00", desc: "1 rib patty, lettuce, tomato, burger roll & chips" },
+                    { name: "Supreme Cheese Burger", price: "$10.00", desc: "2 beef patties, 2 cheese slices, tomato, lettuce & chips" }
+                ]
+            },
+            {
+                category: "Bulawayo Tapas",
+                items: [
+                    { name: "6 Small Prawns with Rice", price: "$10.00", desc: "Light seafood dish" },
+                    { name: "4 Wings / 4 Drums", price: "$7.00", desc: "Chicken nibbles" },
+                    { name: "Soup of the Day", price: "$5.00", desc: "Chef's daily special" },
+                    { name: "Crumbed Mushroom", price: "$4.00", desc: "Golden fried mushrooms" },
+                    { name: "Chipotle Chicken Livers", price: "$3.00", desc: "Spicy livers" },
+                    { name: "4 Vol-au-vents", price: "$3.00", desc: "Tuna or Chicken filling" },
+                    { name: "Focaccia", price: "$3.50", desc: "Plain, Garlic, or Cheese" },
+                    { name: "Petiscos Trinchado", price: "$4.00", desc: "Portuguese savory dish" }
+                ]
+            },
+            {
+                category: "Bulawayo Chicken",
+                items: [
+                    { name: "Full Chicken", price: "$18.00", desc: "The whole bird, grilled to perfection" },
+                    { name: "Half Chicken", price: "$14.00", desc: "Half bird portion" },
+                    { name: "Quarter Chicken", price: "$7.00", desc: "Leg or breast piece" },
+                    { name: "Chicken Schnitzel Medallion", price: "$12.00", desc: "With choice of cheesy, mushroom, or pepper sauce" },
+                    { name: "Grilled Chicken Breasts", price: "$6.00", desc: "Succulent seasoned breasts" },
+                    { name: "Spinach Stuffed Breasts", price: "$12.00", desc: "Stuffed with creamy spinach" }
+                ]
+            },
+            {
+                category: "Bulawayo Hearty Meals",
+                items: [
+                    { name: "Oxtail", price: "$12.00", desc: "Slow cooked stew" },
+                    { name: "Chicken Makhaya", price: "$8.00", desc: "Traditional home style chicken" },
+                    { name: "Lamb Curry", price: "$8.00", desc: "Aromatic lamb curry" },
+                    { name: "Brisket", price: "$8.00", desc: "Tender slow cooked beef" }
+                ]
+            },
+            {
+                category: "Bulawayo Steaks",
+                items: [
+                    { name: "Beef/Pork Frites", price: "$8.00", desc: "200g gammon or sirloin, fried egg, chips, house bbq mayo" },
+                    { name: "Grilled Beef Fillet", price: "$10.00", desc: "Spicy flavourful grilled fillet topped with chimichuri sauce" },
+                    { name: "Honey Garlic Pork Chop", price: "$12.00", desc: "Juicy tender chops in honey garlic sauce" },
+                    { name: "Ribs and Wings Combo", price: "$15.00", desc: "Best of both worlds" },
+                    { name: "Rump Steak 200g", price: "$10.00", desc: "Juicy rump cooked to your liking" },
+                    { name: "Rump Steak 300g", price: "$13.00", desc: "Large rump cooked to your liking" },
+                    { name: "Salisbury Steak", price: "$10.00", desc: "200g sirloin topped with brown gravy" },
+                    { name: "Sticky Honey Garlic Ribs", price: "$12.00", desc: "Slow cooked pork ribs in signature sauce" },
+                    { name: "Surf & Turf (Calamari)", price: "$16.00", desc: "Rump & Calamari" },
+                    { name: "Surf & Turf (Prawns)", price: "$18.00", desc: "Rump & 4 Prawns" },
+                    { name: "T-Bone 300g", price: "$12.00", desc: "Flame grilled, tender & flavourful" }
+                ]
+            },
+            {
+                category: "Kiddies Menu",
+                items: [
+                    { name: "Chicken Strips with Chips", price: "$6.00", desc: "Crispy strips" },
+                    { name: "Chicken or Beef Burger", price: "$5.00", desc: "Kid sized burger" },
+                    { name: "Baked Pasta", price: "$5.00", desc: "Cheesy pasta bake" },
+                    { name: "Hawaiian/Margherita Pizza", price: "$5.00", desc: "Small pizza" },
+                    { name: "Chicken/Fish Nuggets", price: "$5.00", desc: "Bite sized snacks" }
+                ]
+            },
+            {
+                category: "Bulawayo Pastas",
+                items: [
+                    { name: "Beef Napolitana", price: "$8.00", desc: "Beef strips, garlic, mixed peppers, napolitana sauce" },
+                    { name: "Bolognaise", price: "$9.00", desc: "Spaghetti, mince, napolitana sauce" },
+                    { name: "Chicken Alfredo", price: "$12.00", desc: "Linguine, mushrooms, bacon, chicken strips & creamy sauce" },
+                    { name: "Chicken Fettuccine", price: "$10.00", desc: "Chicken strips, mushrooms, garlic, onion, creamy sauce" },
+                    { name: "Creamy Pasta", price: "$8.00", desc: "Penne, peppers, chicken strips & creamy pasta" },
+                    { name: "Lasagna", price: "$12.00", desc: "Beef, Chicken, or Veg options" },
+                    { name: "Shrimp & Salmon Fettuccine", price: "$15.00", desc: "Shrimps, salmon, garlic onion, fresh cream & parsley" },
+                    { name: "Spaghetti e Polpette", price: "$10.00", desc: "6 meatballs in tomato sauce" },
+                    { name: "Veg Pasta (V)", price: "$8.00", desc: "Macaroni, mixed vegs & creamy sauce" }
+                ]
+            },
+            {
+                category: "Bulawayo Pizza's",
+                items: [
+                    { name: "The Fairy Pizza", price: "$14.00", desc: "Signature pizza" },
+                    { name: "Midlands Dargle Chicken", price: "$10.00", desc: "Specialty chicken pizza" },
+                    { name: "Margherita / Hawaiian", price: "$8.00", desc: "Classic favorites" },
+                    { name: "Three Cheeses", price: "$10.00", desc: "Cheese lover's delight" },
+                    { name: "Bacon Avo & Feta", price: "$9.00", desc: "Rich and creamy" },
+                    { name: "Chicken Mushroom", price: "$11.00", desc: "Savory combo" },
+                    { name: "BBQ Steak", price: "$10.00", desc: "Meaty feast" },
+                    { name: "Regina", price: "$9.00", desc: "Ham and mushroom" }
+                ]
+            },
+            {
+                category: "Bulawayo Platters",
+                items: [
+                    { name: "All Day Platter", price: "$30.00", desc: "2 sliders, wrap, wings/drums, samoosas, sausages, pork chop, chips, salad" },
+                    { name: "Family Platter", price: "$40.00", desc: "Samoosas, spring rolls, salad, 1/2 chicken, rump, sausage, chips, meatballs" },
+                    { name: "Platter for 2", price: "$25.00", desc: "Wings/drums, pork chop, sausage, rump steak, chips" },
+                    { name: "Platter for 3", price: "$35.00", desc: "6 wings/drums, 2 pork chops, 2 sausages, 2 rump steaks, chips, salads" }
+                ]
+            },
+            {
+                category: "Stir Fry",
+                items: [
+                    { name: "Sea Food Stir Fry", price: "$10.00", desc: "Asian style seafood mix" },
+                    { name: "Beef Stir Fry", price: "$8.00", desc: "Tender beef strips" },
+                    { name: "Chicken Stir Fry", price: "$7.00", desc: "Chicken strips and veg" },
+                    { name: "Veg Stir Fry", price: "$6.00", desc: "Mixed fresh vegetables" }
+                ]
+            },
+            {
+                category: "Bulawayo Sea Foods",
+                items: [
+                    { name: "Grilled Tilapia", price: "$10.00", desc: "Healthy and delicious treat" },
+                    { name: "Hake", price: "$10.00", desc: "Golden & crispy fillets with tartar sauce" },
+                    { name: "6 Queen Prawns", price: "$16.00", desc: "Succulent prawns" },
+                    { name: "8 Queen Prawns", price: "$20.00", desc: "Larger portion succulent prawns" },
+                    { name: "Hake & Calamari Combo", price: "$15.00", desc: "Fish and rings combo" },
+                    { name: "Sea Food Boil", price: "$30.00", desc: "Feast of the sea" },
+                    { name: "Sea Food Platter", price: "$35.00", desc: "Hake, Calamari, 6 prawns, 6 mussels, rice, ciabatta" }
+                ]
+            },
+            {
+                category: "Bulawayo China",
+                items: [
+                    { name: "Pork / Chicken", price: "$7.00", desc: "Chinese style" },
+                    { name: "Beef in Oyster / Ginger", price: "$8.00", desc: "Classic flavors" },
+                    { name: "Garlic Beef Rice", price: "$9.00", desc: "Savory beef rice" },
+                    { name: "Beef Mushroom", price: "$9.00", desc: "Beef and mushroom stir" },
+                    { name: "Chicken & Cashew Nuts", price: "$9.00", desc: "Crunchy nut combo" },
+                    { name: "Chowmein (Chicken/Beef)", price: "$7.00", desc: "Fried noodles" },
+                    { name: "Egg Fried Rice", price: "$3.00", desc: "Classic side" },
+                    { name: "Vegge Noodles", price: "$5.00", desc: "Vegetarian noodle dish" },
+                    { name: "Chicken Fried Rice", price: "$7.00", desc: "Rice with chicken bits" },
+                    { name: "Sizzling Beef/Chicken", price: "$8.00", desc: "Served hot on iron plate" }
+                ]
+            },
+            {
+                category: "Bulawayo Sushi",
+                items: [
+                    { name: "Inari Prawn / Salmon (2pc)", price: "$4.00", desc: "Bean curd pockets" },
+                    { name: "Prawn / Salmon California (8pc)", price: "$8.00", desc: "Inside out rolls" },
+                    { name: "Prawn / Salmon Maki (6pc)", price: "$8.00", desc: "Seaweed rolls" },
+                    { name: "Prawn / Salmon Nigiri (2pc)", price: "$6.00", desc: "Fish on rice" },
+                    { name: "Prawn / Salmon Fashion Sandwich", price: "$12.00 / $10.00", desc: "Layered sushi sandwich" },
+                    { name: "Salmon & Prawn Platter", price: "$10.00", desc: "6 veg maki, 2 cali veg, 2 veg fashion" },
+                    { name: "Salmon Platter (7pc)", price: "$5.00", desc: "2 fashion, 2 nigiri, 3 maki" },
+                    { name: "Salmon Rainbow Rolls (4pc)", price: "$8.00", desc: "Topped with salmon" },
+                    { name: "Salmon Roses (4pc)", price: "$6.00", desc: "Salmon wrapped rice" },
+                    { name: "Salmon Sashimi (4pc)", price: "$6.00", desc: "Raw salmon slices" },
+                    { name: "Smoked Salmon Creamy Cheese Calc", price: "$10.00", desc: "Rich flavor" },
+                    { name: "Tempura Prawns / Salmon", price: "$8.00 / $10.00", desc: "Battered and fried" },
+                    { name: "Tiger Roll (8pc)", price: "$10.00", desc: "Prawn, salmon, avo mix" },
+                    { name: "Veg California (8pc)", price: "$4.00", desc: "Vegetarian rolls" },
+                    { name: "Veg Fashion / Maki / Platter", price: "$3.00 / $3.00 / $5.00", desc: "Vegetarian assortment" }
+                ]
+            },
+            {
+                category: "Bulawayo Salads",
+                items: [
+                    { name: "Ceasar Salad", price: "$8.00", desc: "Fresh ingredients, ceasar dressing" },
+                    { name: "Chicken Cobb Salad", price: "$8.00", desc: "Grilled chicken, bacon, avo, pumpkin seeds" },
+                    { name: "Greek Salad (V)", price: "$7.00", desc: "Feta, olives, cucumber" },
+                    { name: "Roasted Butternut & Steak", price: "$8.00", desc: "With beef fillet cubes" },
+                    { name: "Rockerfort Salad", price: "$8.00", desc: "Blue cheese, olives, mayonnaise" },
+                    { name: "Salmon Salad", price: "$15.00", desc: "Fresh salmon, avocado, sunflower seeds" },
+                    { name: "Sweet Corn Salad", price: "$8.00", desc: "Grilled corn, almonds, honey mustard" }
+                ]
+            },
+            {
+                category: "Bulawayo Drinks",
+                items: [
+                    { name: "Milkshakes", price: "$2.50 / $4.00", desc: "Reg / Large (Cold and creamy)" },
+                    { name: "Smoothies", price: "$3.00 / $4.00", desc: "Reg / Large (Fruit blends)" },
+                    { name: "Non Alcoholic / Soft Drinks", price: "$1.00 - $2.00", desc: "Coke, Switch, Liquifruit, Krush, Energade" },
+                    { name: "Exotic Drinks", price: "$2.50", desc: "Unique local and imported" },
+                    { name: "Slush Puppie", price: "$2.00", desc: "Iced treat" },
+                    { name: "Flavored Water", price: "$1.50", desc: "Refreshing" },
+                    { name: "Woolies Assorted", price: "$3.00", desc: "Premium juices" }
+                ]
+            }
+        ];
+
+        const menuSections = document.getElementById('menu-sections');
+        const categoryNav = document.getElementById('category-nav');
+        const searchInput = document.getElementById('menu-search');
+
+        function renderMenu(data) {
+            menuSections.innerHTML = '';
+            categoryNav.innerHTML = '';
+
+            data.forEach((cat) => {
+                const id = cat.category.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+                // Sidebar Link
+                const navLink = document.createElement('a');
+                navLink.href = `#${id}`;
+                navLink.innerText = cat.category.replace('Bulawayo ', '');
+                navLink.className = "text-text-gray hover:text-text-dark hover:pl-2 px-3 transition-all py-1.5 border-l-2 border-transparent hover:border-primary-yellow nav-link-item text-sm";
+                navLink.setAttribute('data-target', id);
+                categoryNav.appendChild(navLink);
+
+                // Section Container
+                const section = document.createElement('section');
+                section.id = id;
+                section.className = "menu-section mb-12 scroll-mt-28";
+                section.innerHTML = `
+                    <div class="flex items-center gap-4 mb-8">
+                        <h2 class="text-3xl font-bold text-text-dark uppercase tracking-wide">${cat.category}</h2>
+                        <div class="h-[2px] flex-grow bg-gray-100/50"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        ${cat.items.map(item => `
+                            <div class="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all group menu-item overflow-hidden">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="text-lg font-bold group-hover:text-primary-yellow transition-colors leading-tight">${item.name}</h4>
+                                    <span class="text-xl font-bold text-text-dark whitespace-nowrap ml-4">${item.price}</span>
+                                </div>
+                                <p class="text-text-gray text-sm leading-relaxed">${item.desc}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                menuSections.appendChild(section);
+            });
+
+            lucide.createIcons();
+
+            // GSAP Entrance (Batch for reliability)
+            // Use batch to handle multiple items efficiently and reliably
+            ScrollTrigger.batch(".menu-item", {
+                onEnter: batch => gsap.to(batch, {
+                    autoAlpha: 1,
+                    y: 0,
+                    stagger: 0.05,
+                    overwrite: true,
+                    duration: 0.5,
+                    ease: "power2.out"
+                }),
+                onEnterBack: batch => gsap.to(batch, {
+                    autoAlpha: 1,
+                    y: 0,
+                    overwrite: true,
+                    duration: 0.1
+                }),
+                // Ensure initial state is set right before animation starts to avoid "hidden forever" bugs
+                onRefresh: batch => gsap.set(batch, { y: 20 }),
+                start: "top 95%",
+                once: true
+            });
+
+            // Force initial state safely
+            gsap.set(".menu-item", { autoAlpha: 0, y: 20 });
+        }
+
+        // Initialize
+        renderMenu(menuData);
+
+        // Active Link Highlighting
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('.menu-section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-link-item').forEach(link => {
+                link.classList.remove('nav-link-active');
+                if (link.getAttribute('data-target') === current) {
+                    link.classList.add('nav-link-active');
+                }
+            });
+        });
+
+        // Search Filter
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            const filteredData = menuData.map(cat => ({
+                ...cat,
+                items: cat.items.filter(item =>
+                    item.name.toLowerCase().includes(query) ||
+                    item.desc.toLowerCase().includes(query) ||
+                    cat.category.toLowerCase().includes(query)
+                )
+            })).filter(cat => cat.items.length > 0);
+
+            renderMenu(filteredData);
+            ScrollTrigger.refresh();
+        });
+
+        // Smooth Nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
