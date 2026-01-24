@@ -111,12 +111,18 @@
         </div>
 
         <!-- Auth Buttons (Desktop) -->
-        <div class="hidden md:flex gap-5">
+        <div class="hidden md:flex items-center gap-6">
             <button
                 class="px-6 py-2.5 rounded-full text-sm font-medium border border-text-dark bg-white text-text-dark hover:bg-bg-light transition-all">Sign
                 In</button>
             <button
                 class="px-6 py-2.5 rounded-full text-sm font-medium bg-primary-yellow text-white shadow-[0_5px_15px_rgba(29,105,27,0.4)] hover:-translate-y-0.5 hover:shadow-[0_8px_18px_rgba(29,105,27,0.6)] transition-all">Login</button>
+            <a href="menu.html"
+                class="relative p-2 bg-primary-yellow/10 rounded-full hover:bg-primary-yellow/20 transition-all">
+                <i data-lucide="shopping-cart" class="w-5 h-5 text-primary-yellow"></i>
+                <span id="nav-cart-count"
+                    class="absolute -top-1 -right-1 bg-primary-yellow text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">0</span>
+            </a>
         </div>
     </nav>
 
@@ -135,8 +141,13 @@
                 <li><a href="#about-section"
                         class="text-xl font-bold text-text-dark border-b border-gray-100 pb-2 block">About</a></li>
                 <li><a href="menu.html"
-                        class="text-xl font-bold text-text-dark border-b border-gray-100 pb-2 block">Full
-                        Menu</a></li>
+                        class="text-xl font-bold text-text-dark border-b border-gray-100 pb-2 block">Full Menu</a></li>
+                <li><a href="menu.html?openCart=true"
+                        class="text-xl font-bold text-primary-yellow border-b border-gray-100 pb-2 flex justify-between items-center">
+                        My Cart
+                        <span id="mobile-cart-count"
+                            class="bg-primary-yellow text-white text-xs px-3 py-1 rounded-full">0</span>
+                    </a></li>
             </ul>
 
             <div class="mt-auto flex flex-col gap-4">
@@ -197,14 +208,14 @@
                 </div>
 
                 <div class="flex flex-col items-center md:items-start gap-8 w-full">
-                    <button
+                    <a href="menu.html"
                         class="bg-text-dark text-white p-5 pr-10 rounded-full inline-flex items-center gap-[30px] text-lg font-medium shadow-2xl hover:scale-105 hover:bg-black transition-transform w-fit group">
                         <div
                             class="w-[50px] h-[50px] bg-primary-yellow rounded-full flex justify-center items-center text-text-dark">
                             <i data-lucide="shopping-bag" class="w-5 h-5 fill-current"></i>
                         </div>
                         Buy Now
-                    </button>
+                    </a>
 
                     <!-- Pagination -->
                     <div class="flex gap-2.5 pt-4">
@@ -1155,6 +1166,19 @@
         mobileSidebar.addEventListener('click', (e) => {
             if (e.target === mobileSidebar) closeSidebar();
         });
+
+        // Cart Count Sync (for homepage)
+        function syncCartCount() {
+            const cart = JSON.parse(localStorage.getItem('fairyCart')) || [];
+            const total = cart.reduce((acc, item) => acc + item.quantity, 0);
+            const countEl = document.getElementById('nav-cart-count');
+            const mobileCountEl = document.getElementById('mobile-cart-count');
+            if (countEl) countEl.innerText = total;
+            if (mobileCountEl) mobileCountEl.innerText = total;
+        }
+        syncCartCount();
+        window.addEventListener('storage', syncCartCount);
+        window.addEventListener('focus', syncCartCount);
 
     </script>
 </body>
