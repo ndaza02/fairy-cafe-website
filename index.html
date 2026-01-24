@@ -72,9 +72,34 @@
                         <span
                             class="absolute -top-1 -left-2.5 w-1.5 h-1.5 bg-text-dark rounded-full rotate-45 transform"></span>
                     </a></li>
-                <li><a href="menu.html"
-                        class="text-text-gray text-sm font-medium hover:text-text-dark transition-colors">Menu
-                        <i data-lucide="chevron-down" class="inline w-3 h-3 ml-1"></i></a></li>
+                <li class="relative group">
+                    <a href="menu.html"
+                        class="text-text-gray text-sm font-medium hover:text-text-dark transition-colors flex items-center gap-1">
+                        Menu
+                        <i data-lucide="chevron-down"
+                            class="w-3.5 h-3.5 transition-transform group-hover:rotate-180"></i>
+                    </a>
+                    <!-- Dropdown Menu -->
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <div class="bg-white rounded-2xl shadow-2xl p-4 border border-gray-50 min-w-[180px]">
+                            <ul class="space-y-2">
+                                <li><a href="menu.html?cat=breakfast"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="coffee" class="w-3 h-3"></i> Breakfast</a></li>
+                                <li><a href="menu.html?cat=burgers"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="beef" class="w-3 h-3"></i> Burgers</a></li>
+                                <li><a href="menu.html?cat=pizzas"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="pizza" class="w-3 h-3"></i> Pizzas</a></li>
+                                <li><a href="menu.html?cat=sushi"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="fish" class="w-3 h-3"></i> Sushi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
 
@@ -399,7 +424,7 @@
             <div class="order-1 md:order-2 about-image opacity-0 translate-x-10">
                 <div class="relative">
                     <div class="absolute -top-4 -left-4 w-full h-full bg-primary-yellow/20 rounded-[2rem]"></div>
-                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80"
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80"
                         alt="Fairy Cafe Interior"
                         class="relative rounded-[2rem] shadow-2xl w-full h-[500px] object-cover">
                 </div>
@@ -418,27 +443,27 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-[1200px] mx-auto">
             <!-- Dish 1 -->
             <div
-                class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all group cursor-pointer signature-dish">
+                class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all group cursor-pointer signature-dish opacity-0 translate-y-10">
                 <div class="relative overflow-hidden h-[280px]">
-                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80"
-                        alt="Hungry Man Breakfast"
+                    <img src="https://images.unsplash.com/photo-1599307767316-656551ff875c?auto=format&fit=crop&w=600&q=80"
+                        alt="Breakfast Quesadillas"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div
-                        class="absolute top-4 right-4 bg-primary-yellow text-text-dark px-4 py-2 rounded-full font-bold text-sm">
+                        class="absolute top-4 right-4 bg-primary-yellow text-white px-4 py-2 rounded-full font-bold text-sm">
                         Best Seller
                     </div>
                 </div>
                 <div class="p-8">
-                    <h3 class="text-2xl font-bold text-text-dark mb-3">Hungry Man's Breakfast</h3>
+                    <h3 class="text-2xl font-bold text-text-dark mb-3">Breakfast Quesadillas</h3>
                     <p class="text-text-gray text-sm mb-6 leading-relaxed">
-                        A hearty feast with eggs, bacon, sausage, mushrooms, and our signature potato wedges
+                        Filled with fluffy scrambled eggs, melted cheese and tomato, served with soup on the side.
                     </p>
                     <div class="flex justify-between items-center">
-                        <span class="text-3xl font-bold text-text-dark">$12.00</span>
-                        <button
-                            class="px-6 py-3 bg-text-dark text-white rounded-full hover:bg-primary-yellow hover:text-text-dark transition-colors font-semibold">
+                        <span class="text-3xl font-bold text-text-dark">$7.00</span>
+                        <a href="menu.html"
+                            class="px-6 py-3 bg-text-dark text-white rounded-full hover:bg-primary-yellow hover:text-white transition-colors font-semibold">
                             Order Now
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -447,25 +472,25 @@
             <div
                 class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all group cursor-pointer signature-dish opacity-0 translate-y-10">
                 <div class="relative overflow-hidden h-[280px]">
-                    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=600&q=80"
-                        alt="Tiger Roll Sushi"
+                    <img src="https://images.unsplash.com/photo-1547496502-affa22d38842?auto=format&fit=crop&w=600&q=80"
+                        alt="Hungry Man Breakfast"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div
-                        class="absolute top-4 right-4 bg-primary-yellow text-text-dark px-4 py-2 rounded-full font-bold text-sm">
-                        Chef's Pick
+                        class="absolute top-4 right-4 bg-primary-yellow text-white px-4 py-2 rounded-full font-bold text-sm">
+                        Chef's Choice
                     </div>
                 </div>
                 <div class="p-8">
-                    <h3 class="text-2xl font-bold text-text-dark mb-3">Tiger Roll</h3>
+                    <h3 class="text-2xl font-bold text-text-dark mb-3">Hungry Man’s Breakfast</h3>
                     <p class="text-text-gray text-sm mb-6 leading-relaxed">
-                        Colorful, zesty sushi roll with fresh salmon, avocado, and our secret sauce
+                        2 eggs, country style sausage, bacon, mushrooms, 300g Rump steak and potato wedges.
                     </p>
                     <div class="flex justify-between items-center">
-                        <span class="text-3xl font-bold text-text-dark">$10.00</span>
-                        <button
-                            class="px-6 py-3 bg-text-dark text-white rounded-full hover:bg-primary-yellow hover:text-text-dark transition-colors font-semibold">
+                        <span class="text-3xl font-bold text-text-dark">$12.00</span>
+                        <a href="menu.html"
+                            class="px-6 py-3 bg-text-dark text-white rounded-full hover:bg-primary-yellow hover:text-white transition-colors font-semibold">
                             Order Now
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -474,25 +499,25 @@
             <div
                 class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all group cursor-pointer signature-dish opacity-0 translate-y-10">
                 <div class="relative overflow-hidden h-[280px]">
-                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80"
-                        alt="The Fairy Pizza"
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80"
+                        alt="Carnivore Platter"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div
-                        class="absolute top-4 right-4 bg-primary-yellow text-text-dark px-4 py-2 rounded-full font-bold text-sm">
+                        class="absolute top-4 right-4 bg-primary-yellow text-white px-4 py-2 rounded-full font-bold text-sm">
                         Signature
                     </div>
                 </div>
                 <div class="p-8">
-                    <h3 class="text-2xl font-bold text-text-dark mb-3">The Fairy Pizza</h3>
+                    <h3 class="text-2xl font-bold text-text-dark mb-3">Carnivore Platter</h3>
                     <p class="text-text-gray text-sm mb-6 leading-relaxed">
-                        Our signature pizza with premium toppings and a perfectly crispy crust
+                        Boerewors, brisket, 1/4 chicken, and 2 pork chops. The ultimate feast for meat lovers.
                     </p>
                     <div class="flex justify-between items-center">
-                        <span class="text-3xl font-bold text-text-dark">$14.00</span>
-                        <button
-                            class="px-6 py-3 bg-text-dark text-white rounded-full hover:bg-primary-yellow hover:text-text-dark transition-colors font-semibold">
+                        <span class="text-3xl font-bold text-text-dark">$25.00</span>
+                        <a href="menu.html"
+                            class="px-6 py-3 bg-text-dark text-white rounded-full hover:bg-primary-yellow hover:text-white transition-colors font-semibold">
                             Order Now
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
