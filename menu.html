@@ -86,18 +86,72 @@
 
 <body class="bg-bg-light min-h-screen text-text-dark overflow-x-hidden">
 
-    <!-- Navigation Overlay -->
-    <nav
-        class="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 px-6 py-4 md:px-16 flex justify-between items-center">
-        <div class="flex items-center">
-            <img src="logo.png" alt="Fairy Cafe Logo" class="h-10 w-auto object-contain">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-2 md:px-16 box-border">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center md:ml-8">
+            <img src="logo.png" alt="Fairy Cafe Logo"
+                class="h-44 w-auto object-contain drop-shadow-md hover:scale-105 transition-transform duration-300">
+        </a>
+
+        <!-- Center Nav -->
+        <div class="hidden md:flex items-center gap-10">
+            <i data-lucide="search" class="w-4 h-4 cursor-pointer hover:text-primary-yellow transition-colors"></i>
+            <ul class="flex gap-8 list-none">
+                <li><a href="index.html#features-section"
+                        class="text-text-gray text-sm font-medium hover:text-text-dark transition-colors">Why
+                        Fairy Cafe?</a></li>
+                <li><a href="index.html#about-section"
+                        class="text-text-dark text-sm font-medium relative transition-colors">
+                        About
+                        <span
+                            class="absolute -top-1 -left-2.5 w-1.5 h-1.5 bg-text-dark rounded-full rotate-45 transform"></span>
+                    </a></li>
+                <li class="relative group">
+                    <a href="menu.html"
+                        class="text-text-gray text-sm font-bold text-primary-yellow transition-colors flex items-center gap-1">
+                        Menu
+                        <i data-lucide="chevron-down"
+                            class="w-3.5 h-3.5 transition-transform group-hover:rotate-180"></i>
+                    </a>
+                    <!-- Dropdown Menu -->
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <div class="bg-white rounded-2xl shadow-2xl p-4 border border-gray-50 min-w-[180px]">
+                            <ul class="space-y-2">
+                                <li><a href="menu.html?cat=breakfast"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="coffee" class="w-3 h-3"></i> Breakfast</a></li>
+                                <li><a href="menu.html?cat=burgers"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="beef" class="w-3 h-3"></i> Burgers</a></li>
+                                <li><a href="menu.html?cat=pizzas"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="pizza" class="w-3 h-3"></i> Pizzas</a></li>
+                                <li><a href="menu.html?cat=sushi"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="fish" class="w-3 h-3"></i> Sushi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <div class="flex items-center gap-6">
-            <a href="index.html"
-                class="flex items-center gap-2 text-sm font-medium hover:text-primary-yellow transition-colors group">
-                <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
-                Home
-            </a>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="md:hidden flex items-center gap-4">
+            <button id="mobile-menu-btn" class="p-2 text-text-dark hover:text-primary-yellow transition-colors">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        <!-- Auth Buttons (Desktop) -->
+        <div class="hidden md:flex items-center gap-6">
+            <button
+                class="px-6 py-2.5 rounded-full text-sm font-medium border border-text-dark bg-white text-text-dark hover:bg-bg-light transition-all">Sign
+                In</button>
+            <button
+                class="px-6 py-2.5 rounded-full text-sm font-medium bg-primary-yellow text-white shadow-[0_5px_15px_rgba(29,105,27,0.4)] hover:-translate-y-0.5 hover:shadow-[0_8px_18px_rgba(29,105,27,0.6)] transition-all">Login</button>
             <button id="open-cart"
                 class="relative p-2 bg-primary-yellow/10 rounded-full hover:bg-primary-yellow/20 transition-all">
                 <i data-lucide="shopping-cart" class="w-5 h-5 text-primary-yellow"></i>
@@ -106,6 +160,42 @@
             </button>
         </div>
     </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-sidebar"
+        class="fixed inset-0 bg-black/60 backdrop-blur-md z-[100] transition-opacity duration-300 opacity-0 invisible">
+        <div
+            class="absolute right-0 top-0 h-full w-[300px] bg-white p-10 flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+            <button id="close-sidebar" class="self-end p-2 text-text-gray hover:text-text-dark mb-10">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+
+            <ul class="flex flex-col gap-6 mb-12">
+                <li><a href="index.html#features-section"
+                        class="text-xl font-bold text-text-dark border-b border-gray-100 pb-2 block">Why Fairy
+                        Cafe?</a></li>
+                <li><a href="index.html#about-section"
+                        class="text-xl font-bold text-text-dark border-b border-gray-100 pb-2 block">About</a></li>
+                <li><a href="menu.html"
+                        class="text-xl font-bold text-primary-yellow border-b border-gray-100 pb-2 block">Full Menu</a>
+                </li>
+                <li><a href="#" id="mobile-cart-link"
+                        class="text-xl font-bold text-text-dark border-b border-gray-100 pb-2 flex justify-between items-center">
+                        My Cart
+                        <span id="mobile-cart-count"
+                            class="bg-primary-yellow text-white text-xs px-3 py-1 rounded-full">0</span>
+                    </a></li>
+            </ul>
+
+            <div class="mt-auto flex flex-col gap-4">
+                <button
+                    class="w-full py-4 rounded-full font-bold border-2 border-text-dark text-text-dark hover:bg-bg-light transition-all">Sign
+                    In</button>
+                <button
+                    class="w-full py-4 rounded-full font-bold bg-primary-yellow text-white shadow-lg hover:bg-text-dark transition-all">Login</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Side Cart Drawer -->
     <div id="cart-drawer"
@@ -152,7 +242,23 @@
         <div class="max-w-[1200px] mx-auto text-center">
             <h1 class="text-5xl md:text-6xl font-bold mb-6 italic">Full Menu</h1>
             <p class="text-text-gray text-lg max-w-2xl mx-auto mb-10 text-balance">Explore our complete collection from
-                Fairy Cafe Bulawayo. 16 categories and over 100 dishes prepared daily.</p>
+                Fairy Cafe. Select your nearest branch below.</p>
+
+            <!-- Branch Selection -->
+            <div class="flex justify-center flex-wrap gap-4 mb-10">
+                <button onclick="switchLocation('bulawayo')" id="tab-bulawayo"
+                    class="branch-tab active px-6 py-2 rounded-full border border-primary-yellow bg-primary-yellow text-white font-bold transition-all hover:shadow-lg hover:-translate-y-1">
+                    Bulawayo
+                </button>
+                <button onclick="switchLocation('greendale')" id="tab-greendale"
+                    class="branch-tab px-6 py-2 rounded-full border border-gray-200 bg-white text-text-dark font-medium transition-all hover:border-primary-yellow hover:text-primary-yellow hover:-translate-y-1">
+                    Greendale
+                </button>
+                <button onclick="switchLocation('joina_city')" id="tab-joina_city"
+                    class="branch-tab px-6 py-2 rounded-full border border-gray-200 bg-white text-text-dark font-medium transition-all hover:border-primary-yellow hover:text-primary-yellow hover:-translate-y-1">
+                    Joina City
+                </button>
+            </div>
 
             <!-- Search Bar -->
             <div class="relative max-w-xl mx-auto">
@@ -244,7 +350,7 @@
 
     <script>
         // COMPREHENSIVE Menu Data from menu.md
-        const menuData = [
+        const baseMenuData = [
             {
                 category: "Bulawayo Breakfast",
                 items: [
@@ -252,13 +358,14 @@
                     { name: "Carnivore Breakfast", price: "$5.00", desc: "2 eggs, 2 rashers of bacon, 1 sausage" },
                     { name: "Club Sandwich", price: "$7.00", desc: "Baked Ham/Cheese | Chicken Mayo | Bacon | Egg & Cheese | Coleslaw Sandwich" },
                     { name: "Early Bird Breakfast", price: "$8.00", desc: "Toast 2 slices, 2 eggs, 50g cherry tomatoes, 2 rashers of bacon" },
-                    { name: "Fairy Breakfast", price: "$5.00", desc: "1 egg, 2 rashers of bacon, tomato slice, 1/2 a sausage & small chips" },
-                    { name: "Hungry Man’s Breakfast", price: "$12.00", desc: "2 eggs, country style sausage, tomato slice, 3 rashers of bacon, mushroom, 300g Rump/fillet & potato wedges" },
-                    { name: "Muesli (V)", price: "$6.00", desc: "Yoghurt & Mixed Fruits" },
+                    { name: "Fairy Breakfast", price: "$5.00", desc: "1 egg, 2 rashers of bacon, tomato slice, 1/2 a sausage & small chips", image: "images/menu/Fairy Breakfast $5 (1 egg, 2 rations of bacon, tomato slice, 12 a sausage & chips).jpeg" },
+                    { name: "Hungry Man’s Breakfast", price: "$12.00", desc: "2 eggs, country style sausage, tomato slice, 3 rashers of bacon, mushroom, 300g Rump/fillet & potato wedges", image: "images/menu/Hungry Man's Breakfast $12.jpeg" },
+                    { name: "Muesli (V)", price: "$6.00", desc: "Yoghurt & Mixed Fruits", image: "images/menu/Muesli $6.jpeg" },
                     { name: "Omelette", price: "$5.00", desc: "Bacon omelette, veggie omelette, mushroom omelette, or Lamb & feta omelette" },
                     { name: "Sandwiches", price: "$5.00", desc: "Baked Ham/Cheese | Chicken Mayo | Bacon | Egg & Cheese | Coleslaw Sandwich (options)" },
                     { name: "Vegetarian Breakfast Bowl (V)", price: "$8.00", desc: "Poached egg, creamed spinach, roasted butternut, mushroom & toast" },
-                    { name: "Waffle Delight", price: "$6.00", desc: "1 waffle, baby spinach, bacon, egg, syrup" }
+                    { name: "Waffle Delight", price: "$6.00", desc: "1 waffle, baby spinach, bacon, egg, syrup", image: "images/menu/Waffle Delight $6 (1 Waffle, Baby Spinach, bacon egg syrup).jpeg" },
+                    { name: "Kota", price: "$4.50", desc: "Traditional township flavor", image: "images/menu/Kota $4,50.jpeg" }
                 ]
             },
             {
@@ -291,7 +398,8 @@
                     { name: "Chocolate Mousse", price: "$3.50", desc: "Silky chocolate dessert" },
                     { name: "Choc Mousse Tub", price: "$3.00", desc: "To-go treat" },
                     { name: "Trifle", price: "$2.50", desc: "Layered sponge and custard" },
-                    { name: "Lemon Curd", price: "$1.25", desc: "Zesty lemon dessert" }
+                    { name: "Lemon Curd", price: "$1.25", desc: "Zesty lemon dessert" },
+                    { name: "Waffles", price: "$3.00", desc: "For 2", image: "images/menu/Waffles $3 for 2.jpeg" }
                 ]
             },
             {
@@ -299,10 +407,10 @@
                 items: [
                     { name: "Bacon & Brie", price: "$9.00", desc: "Crispy bacon with creamy brie cheese creating a symphony of flavours" },
                     { name: "BBQ Cheese", price: "$6.00", desc: "Grilled patty smothered in tangy BBQ sauce & melted cheese" },
-                    { name: "Big Fairy Burger", price: "$12.00", desc: "2 beef patties, 2 cheese slices, 4 rashers of bacon, avocado, tomato, lettuce" },
+                    { name: "Big Fairy Burger", price: "$12.00", desc: "2 beef patties, 2 cheese slices, 4 rashers of bacon, avocado, tomato, lettuce", image: "images/menu/Big Fairy Burger $12 (2 beef patties, 2 cheese slices, 4 rashers of bacon, avocado, tomato and lettuce, burger roll with chips and salad).jpeg" },
                     { name: "Chicken Crunchy", price: "$7.00", desc: "Crumbed chicken breast, lettuce, tomato & chips" },
                     { name: "Pork Rib Burger", price: "$7.00", desc: "1 rib patty, lettuce, tomato, burger roll & chips" },
-                    { name: "Supreme Cheese Burger", price: "$10.00", desc: "2 beef patties, 2 cheese slices, tomato, lettuce & chips" }
+                    { name: "Supreme Cheese Burger", price: "$10.00", desc: "2 beef patties, 2 cheese slices, tomato, lettuce & chips", image: "images/menu/Supreme Burger $9.jpeg" }
                 ]
             },
             {
@@ -310,7 +418,7 @@
                 items: [
                     { name: "6 Small Prawns with Rice", price: "$10.00", desc: "Light seafood dish" },
                     { name: "4 Wings / 4 Drums", price: "$7.00", desc: "Chicken nibbles" },
-                    { name: "Soup of the Day", price: "$5.00", desc: "Chef's daily special" },
+                    { name: "Soup of the Day", price: "$5.00", desc: "Creamy Tomato Soup", image: "images/menu/Soup of the Day (Creamy Tomato Soup) $5.jpeg" },
                     { name: "Crumbed Mushroom", price: "$4.00", desc: "Golden fried mushrooms" },
                     { name: "Chipotle Chicken Livers", price: "$3.00", desc: "Spicy livers" },
                     { name: "4 Vol-au-vents", price: "$3.00", desc: "Tuna or Chicken filling" },
@@ -324,9 +432,11 @@
                     { name: "Full Chicken", price: "$18.00", desc: "The whole bird, grilled to perfection" },
                     { name: "Half Chicken", price: "$14.00", desc: "Half bird portion" },
                     { name: "Quarter Chicken", price: "$7.00", desc: "Leg or breast piece" },
-                    { name: "Chicken Schnitzel Medallion", price: "$12.00", desc: "With choice of cheesy, mushroom, or pepper sauce" },
+                    { name: "Chicken Schnitzel Medallion", price: "$12.00", desc: "With choice of cheesy, mushroom, or pepper sauce", image: "images/menu/Chicken Schnitzel $12.jpeg" },
                     { name: "Grilled Chicken Breasts", price: "$6.00", desc: "Succulent seasoned breasts" },
-                    { name: "Spinach Stuffed Breasts", price: "$12.00", desc: "Stuffed with creamy spinach" }
+                    { name: "Spinach Stuffed Breasts", price: "$12.00", desc: "Stuffed with creamy spinach" },
+                    { name: "Flying Hog", price: "$15.00", desc: "Wings and ribs", image: "images/menu/Flying Hog (Wings and ribs) $15.jpeg" },
+                    { name: "Chicken Mexican Wrap", price: "$3.50", desc: "Spicy chicken wrap", image: "images/menu/ChickenMexican Wrap $3,50.jpeg" }
                 ]
             },
             {
@@ -335,7 +445,8 @@
                     { name: "Oxtail", price: "$12.00", desc: "Slow cooked stew" },
                     { name: "Chicken Makhaya", price: "$8.00", desc: "Traditional home style chicken" },
                     { name: "Lamb Curry", price: "$8.00", desc: "Aromatic lamb curry" },
-                    { name: "Brisket", price: "$8.00", desc: "Tender slow cooked beef" }
+                    { name: "Brisket", price: "$8.00", desc: "Tender slow cooked beef" },
+                    { name: "Garlic Beef/Chicken/Pork Rice", price: "$5.00", desc: "Savory rice dish", image: "images/menu/Garlic Beef Chicken Pork Rice $5.jpeg" }
                 ]
             },
             {
@@ -343,25 +454,28 @@
                 items: [
                     { name: "Beef/Pork Frites", price: "$8.00", desc: "200g gammon or sirloin, fried egg, chips, house bbq mayo" },
                     { name: "Grilled Beef Fillet", price: "$10.00", desc: "Spicy flavourful grilled fillet topped with chimichuri sauce" },
-                    { name: "Honey Garlic Pork Chop", price: "$12.00", desc: "Juicy tender chops in honey garlic sauce" },
+                    { name: "Honey Garlic Pork Chop", price: "$12.00", desc: "Juicy tender chops in honey garlic sauce", image: "images/menu/Honey Garlic Pork Chop $12 (Juicy tender pork chop cooked in a flavorful honey garlic sauce).jpeg" },
                     { name: "Ribs and Wings Combo", price: "$15.00", desc: "Best of both worlds" },
-                    { name: "Rump Steak 200g", price: "$10.00", desc: "Juicy rump cooked to your liking" },
+                    { name: "Rump Steak 200g", price: "$10.00", desc: "Juicy rump cooked to your liking", image: "images/menu/Rump Steak 200g or 300g $10 or $13 respectively.jpeg" },
                     { name: "Rump Steak 300g", price: "$13.00", desc: "Large rump cooked to your liking" },
                     { name: "Salisbury Steak", price: "$10.00", desc: "200g sirloin topped with brown gravy" },
                     { name: "Sticky Honey Garlic Ribs", price: "$12.00", desc: "Slow cooked pork ribs in signature sauce" },
                     { name: "Surf & Turf (Calamari)", price: "$16.00", desc: "Rump & Calamari" },
                     { name: "Surf & Turf (Prawns)", price: "$18.00", desc: "Rump & 4 Prawns" },
-                    { name: "T-Bone 300g", price: "$12.00", desc: "Flame grilled, tender & flavourful" }
+                    { name: "T-Bone 300g", price: "$12.00", desc: "Flame grilled, tender & flavourful" },
+                    { name: "Pork Chop", price: "$12.00", desc: "Grilled pork chop", image: "images/menu/Pork Chop $12.jpeg" },
+                    { name: "Sizzling Beef/Chicken", price: "$13.00", desc: "With rice", image: "images/menu/Sizzling Beef Chicken with rice $13.jpeg" }
                 ]
             },
             {
                 category: "Kiddies Menu",
                 items: [
-                    { name: "Chicken Strips with Chips", price: "$6.00", desc: "Crispy strips" },
+                    { name: "Chicken Strips with Chips", price: "$6.00", desc: "Crispy strips", image: "images/menu/Chicken Strips $6.jpeg" },
                     { name: "Chicken or Beef Burger", price: "$5.00", desc: "Kid sized burger" },
                     { name: "Baked Pasta", price: "$5.00", desc: "Cheesy pasta bake" },
                     { name: "Hawaiian/Margherita Pizza", price: "$5.00", desc: "Small pizza" },
-                    { name: "Chicken/Fish Nuggets", price: "$5.00", desc: "Bite sized snacks" }
+                    { name: "Chicken/Fish Nuggets", price: "$5.00", desc: "Bite sized snacks" },
+                    { name: "1/4 Chicken and Chips", price: "$7.00", desc: "Quarter chicken with chips", image: "images/menu/14 Chicken and chips $7.jpeg" }
                 ]
             },
             {
@@ -373,7 +487,7 @@
                     { name: "Chicken Fettuccine", price: "$10.00", desc: "Chicken strips, mushrooms, garlic, onion, creamy sauce" },
                     { name: "Creamy Pasta", price: "$8.00", desc: "Penne, peppers, chicken strips & creamy pasta" },
                     { name: "Lasagna", price: "$12.00", desc: "Beef, Chicken, or Veg options" },
-                    { name: "Shrimp & Salmon Fettuccine", price: "$15.00", desc: "Shrimps, salmon, garlic onion, fresh cream & parsley" },
+                    { name: "Shrimp & Salmon Fettuccine", price: "$15.00", desc: "Shrimps, salmon, garlic onion, fresh cream & parsley", image: "images/menu/Pasta_Platter.jpeg" },
                     { name: "Spaghetti e Polpette", price: "$10.00", desc: "6 meatballs in tomato sauce" },
                     { name: "Veg Pasta (V)", price: "$8.00", desc: "Macaroni, mixed vegs & creamy sauce" }
                 ]
@@ -384,19 +498,19 @@
                     { name: "The Fairy Pizza", price: "$14.00", desc: "Signature pizza" },
                     { name: "Midlands Dargle Chicken", price: "$10.00", desc: "Specialty chicken pizza" },
                     { name: "Margherita / Hawaiian", price: "$8.00", desc: "Classic favorites" },
-                    { name: "Three Cheeses", price: "$10.00", desc: "Cheese lover's delight" },
+                    { name: "Three Cheeses", price: "$10.00", desc: "Cheese lover's delight", image: "images/menu/3 Cheeses Pizza $10.jpeg" },
                     { name: "Bacon Avo & Feta", price: "$9.00", desc: "Rich and creamy" },
                     { name: "Chicken Mushroom", price: "$11.00", desc: "Savory combo" },
                     { name: "BBQ Steak", price: "$10.00", desc: "Meaty feast" },
-                    { name: "Regina", price: "$9.00", desc: "Ham and mushroom" }
+                    { name: "Regina", price: "$9.00", desc: "Ham and mushroom", image: "images/menu/Regina Pizza $9.jpeg" }
                 ]
             },
             {
                 category: "Bulawayo Platters",
                 items: [
-                    { name: "All Day Platter", price: "$30.00", desc: "2 sliders, wrap, wings/drums, samoosas, sausages, pork chop, chips, salad" },
+                    { name: "All Day Platter", price: "$30.00", desc: "2 sliders, wrap, wings/drums, samoosas, sausages, pork chop, chips, salad", image: "images/menu/All Day Platter $30.jpeg" },
                     { name: "Family Platter", price: "$40.00", desc: "Samoosas, spring rolls, salad, 1/2 chicken, rump, sausage, chips, meatballs" },
-                    { name: "Platter for 2", price: "$25.00", desc: "Wings/drums, pork chop, sausage, rump steak, chips" },
+                    { name: "Platter for 2", price: "$25.00", desc: "Wings/drums, pork chop, sausage, rump steak, chips", image: "images/menu/Platter for 2 $25.jpeg" },
                     { name: "Platter for 3", price: "$35.00", desc: "6 wings/drums, 2 pork chops, 2 sausages, 2 rump steaks, chips, salads" }
                 ]
             },
@@ -405,8 +519,10 @@
                 items: [
                     { name: "Sea Food Stir Fry", price: "$10.00", desc: "Asian style seafood mix" },
                     { name: "Beef Stir Fry", price: "$8.00", desc: "Tender beef strips" },
-                    { name: "Chicken Stir Fry", price: "$7.00", desc: "Chicken strips and veg" },
-                    { name: "Veg Stir Fry", price: "$6.00", desc: "Mixed fresh vegetables" }
+                    { name: "Chicken Stir Fry", price: "$7.00", desc: "Chicken strips and veg", image: "images/menu/Chicken Stir Fry $7.jpeg" },
+                    { name: "Veg Stir Fry", price: "$6.00", desc: "Mixed fresh vegetables" },
+                    { name: "Singapore Noodles", price: "$7.00", desc: "Spicy noodles", image: "images/menu/Singapore noodles $7.jpeg" },
+                    { name: "Perthai Noodles", price: "$7.00", desc: "Thai style noodles", image: "images/menu/Perthai Noodles $7.jpeg" }
                 ]
             },
             {
@@ -414,11 +530,12 @@
                 items: [
                     { name: "Grilled Tilapia", price: "$10.00", desc: "Healthy and delicious treat" },
                     { name: "Hake", price: "$10.00", desc: "Golden & crispy fillets with tartar sauce" },
-                    { name: "6 Queen Prawns", price: "$16.00", desc: "Succulent prawns" },
+                    { name: "6 Queen Prawns", price: "$16.00", desc: "Succulent prawns", image: "images/menu/6 Queen Prawns $16.jpeg" },
                     { name: "8 Queen Prawns", price: "$20.00", desc: "Larger portion succulent prawns" },
                     { name: "Hake & Calamari Combo", price: "$15.00", desc: "Fish and rings combo" },
-                    { name: "Sea Food Boil", price: "$30.00", desc: "Feast of the sea" },
-                    { name: "Sea Food Platter", price: "$35.00", desc: "Hake, Calamari, 6 prawns, 6 mussels, rice, ciabatta" }
+                    { name: "Sea Food Boil", price: "$30.00", desc: "Feast of the sea", image: "images/menu/Sea food boil $30.jpeg" },
+                    { name: "Sea Food Platter", price: "$35.00", desc: "Hake, Calamari, 6 prawns, 6 mussels, rice, ciabatta" },
+                    { name: "6 Prawn and Calamari", price: "$18.00", desc: "Combo", image: "images/menu/6 Prawn and Calamari.jpeg" }
                 ]
             },
             {
@@ -433,7 +550,8 @@
                     { name: "Egg Fried Rice", price: "$3.00", desc: "Classic side" },
                     { name: "Vegge Noodles", price: "$5.00", desc: "Vegetarian noodle dish" },
                     { name: "Chicken Fried Rice", price: "$7.00", desc: "Rice with chicken bits" },
-                    { name: "Sizzling Beef/Chicken", price: "$8.00", desc: "Served hot on iron plate" }
+                    { name: "Sizzling Beef/Chicken", price: "$8.00", desc: "Served hot on iron plate" },
+                    { name: "Beef or Prawn Chow Mein", price: "$8.00", desc: "With chicken or pork", image: "images/menu/Beef or Prawn Chow Mein $8 Chicken or Pork.jpeg" }
                 ]
             },
             {
@@ -449,11 +567,13 @@
                     { name: "Salmon Rainbow Rolls (4pc)", price: "$8.00", desc: "Topped with salmon" },
                     { name: "Salmon Roses (4pc)", price: "$6.00", desc: "Salmon wrapped rice" },
                     { name: "Salmon Sashimi (4pc)", price: "$6.00", desc: "Raw salmon slices" },
-                    { name: "Smoked Salmon Creamy Cheese Calc", price: "$10.00", desc: "Rich flavor" },
+                    { name: "Smoked Salmon Creamy Cheese Calc", price: "$10.00", desc: "Rich flavor", image: "images/menu/Smoked Salmon Creamy cheese California 8 pieces. $10 (Sumptuous fusion of bold flavors).jpeg" },
                     { name: "Tempura Prawns / Salmon", price: "$8.00 / $10.00", desc: "Battered and fried" },
                     { name: "Tiger Roll (8pc)", price: "$10.00", desc: "Prawn, salmon, avo mix" },
                     { name: "Veg California (8pc)", price: "$4.00", desc: "Vegetarian rolls" },
-                    { name: "Veg Fashion / Maki / Platter", price: "$3.00 / $3.00 / $5.00", desc: "Vegetarian assortment" }
+                    { name: "Veg Fashion / Maki / Platter", price: "$3.00 / $3.00 / $5.00", desc: "Vegetarian assortment" },
+                    { name: "Fairy Sushi Platter", price: "$30.00", desc: "Assorted sushi", image: "images/menu/Fairy Sushi Platter $30.jpeg" },
+                    { name: "Rainbow Reloaded", price: "$12.00", desc: "Specialty roll", image: "images/menu/Rainbow Reloaded $12.jpeg" }
                 ]
             },
             {
@@ -477,18 +597,59 @@
                     { name: "Exotic Drinks", price: "$2.50", desc: "Unique local and imported" },
                     { name: "Slush Puppie", price: "$2.00", desc: "Iced treat" },
                     { name: "Flavored Water", price: "$1.50", desc: "Refreshing" },
-                    { name: "Woolies Assorted", price: "$3.00", desc: "Premium juices" }
+                    { name: "Woolies Assorted", price: "$3.00", desc: "Premium juices" },
+                    { name: "Strawberry Daiquiri", price: "$5.00", desc: "Cocktail", image: "images/menu/Strawberry Daiquiri $5.jpeg" },
+                    { name: "Cosmopolitan", price: "$5.00", desc: "Cocktail", image: "images/menu/Cosmopolitan $5.jpeg" }
                 ]
             }
         ];
+
+        function generateLocationMenu(locationName) {
+            return baseMenuData.map(cat => ({
+                ...cat,
+                category: cat.category.replace('Bulawayo', locationName)
+            }));
+        }
+
+        const menuData = {
+            bulawayo: baseMenuData,
+            greendale: generateLocationMenu('Greendale'),
+            joina_city: generateLocationMenu('Joina City')
+        };
+
+        let currentLocation = 'bulawayo';
 
         const menuSections = document.getElementById('menu-sections');
         const categoryNav = document.getElementById('category-nav');
         const searchInput = document.getElementById('menu-search');
 
+        function switchLocation(loc) {
+            currentLocation = loc;
+
+            // Update UI Tabs
+            document.querySelectorAll('.branch-tab').forEach(btn => {
+                btn.className = "branch-tab px-6 py-2 rounded-full border border-gray-200 bg-white text-text-dark font-medium transition-all hover:border-primary-yellow hover:text-primary-yellow hover:-translate-y-1";
+            });
+            const activeBtn = document.getElementById(`tab-${loc}`);
+            if (activeBtn) {
+                activeBtn.className = "branch-tab active px-6 py-2 rounded-full border border-primary-yellow bg-primary-yellow text-white font-bold transition-all hover:shadow-lg hover:-translate-y-1";
+            }
+
+            renderMenu(menuData[loc]);
+            // Re-run search if there is a query
+            if (searchInput.value) {
+                searchInput.dispatchEvent(new Event('input'));
+            }
+        }
+
         function renderMenu(data) {
             menuSections.innerHTML = '';
             categoryNav.innerHTML = '';
+
+            if (!data || data.length === 0) {
+                menuSections.innerHTML = '<p class="text-center text-gray-500">No menu items found.</p>';
+                return;
+            }
 
             data.forEach((cat) => {
                 const id = cat.category.toLowerCase().replace(/[^a-z0-9]/g, '-');
@@ -496,7 +657,13 @@
                 // Sidebar Link
                 const navLink = document.createElement('a');
                 navLink.href = `#${id}`;
-                navLink.innerText = cat.category.replace('Bulawayo ', '');
+                // Smart replace for location prefix
+                let cleanName = cat.category;
+                ['Bulawayo ', 'Greendale ', 'Joina City '].forEach(prefix => {
+                    cleanName = cleanName.replace(prefix, '');
+                });
+
+                navLink.innerText = cleanName;
                 navLink.className = "text-text-gray hover:text-text-dark hover:pl-2 px-3 transition-all py-1.5 border-l-2 border-transparent hover:border-primary-yellow nav-link-item text-sm";
                 navLink.setAttribute('data-target', id);
                 categoryNav.appendChild(navLink);
@@ -512,19 +679,22 @@
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         ${cat.items.map(item => `
-                            <div class="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all group menu-item overflow-hidden relative">
-                                <div class="flex justify-between items-start mb-2">
-                                    <h4 class="text-lg font-bold group-hover:text-primary-yellow transition-colors leading-tight pr-4">${item.name}</h4>
-                                    <span class="text-xl font-bold text-text-dark whitespace-nowrap">${item.price}</span>
+                            <div class="bg-white rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-lg transition-all group menu-item overflow-hidden relative flex flex-col h-full">
+                                ${item.image ? `<div class="h-48 w-full overflow-hidden"><img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"></div>` : ''}
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <h4 class="text-lg font-bold group-hover:text-primary-yellow transition-colors leading-tight pr-4">${item.name}</h4>
+                                        <span class="text-xl font-bold text-text-dark whitespace-nowrap">${item.price}</span>
+                                    </div>
+                                    <p class="text-text-gray text-sm leading-relaxed mb-6 flex-grow">${item.desc}</p>
+                                    <button 
+                                        onclick="addToCart('${item.name}', '${item.price}')"
+                                        class="add-item-btn flex items-center justify-center gap-2 w-full py-3 bg-gray-50 text-text-dark rounded-2xl font-bold text-sm hover:bg-primary-yellow hover:text-white transition-all active:scale-95 group-hover:bg-primary-yellow/10"
+                                    >
+                                        <i data-lucide="plus" class="w-4 h-4"></i>
+                                        Add to Cart
+                                    </button>
                                 </div>
-                                <p class="text-text-gray text-sm leading-relaxed mb-6">${item.desc}</p>
-                                <button 
-                                    onclick="addToCart('${item.name}', '${item.price}')"
-                                    class="add-item-btn flex items-center justify-center gap-2 w-full py-3 bg-gray-50 text-text-dark rounded-2xl font-bold text-sm hover:bg-primary-yellow hover:text-white transition-all active:scale-95 group-hover:bg-primary-yellow/10"
-                                >
-                                    <i data-lucide="plus" class="w-4 h-4"></i>
-                                    Add to Cart
-                                </button>
                             </div>
                         `).join('')}
                     </div>
@@ -562,7 +732,7 @@
         }
 
         // Initialize
-        renderMenu(menuData);
+        renderMenu(menuData.bulawayo);
 
         // Active Link Highlighting
         window.addEventListener('scroll', () => {
@@ -585,7 +755,7 @@
         // Search Filter
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
-            const filteredData = menuData.map(cat => ({
+            const filteredData = menuData[currentLocation].map(cat => ({
                 ...cat,
                 items: cat.items.filter(item =>
                     item.name.toLowerCase().includes(query) ||
@@ -674,13 +844,20 @@
             localStorage.setItem('fairyCart', JSON.stringify(cart));
         }
 
+
+
         function updateCartCount() {
             const total = cart.reduce((acc, item) => acc + item.quantity, 0);
-            cartCount.innerText = total;
+            if (cartCount) cartCount.innerText = total;
+
+            // Update Mobile Cart Count too
+            const mobileCount = document.getElementById('mobile-cart-count');
+            if (mobileCount) mobileCount.innerText = total;
+
             if (total === 0) {
-                checkoutBtn.classList.add('opacity-50', 'pointer-events-none');
+                if (checkoutBtn) checkoutBtn.classList.add('opacity-50', 'pointer-events-none');
             } else {
-                checkoutBtn.classList.remove('opacity-50', 'pointer-events-none');
+                if (checkoutBtn) checkoutBtn.classList.remove('opacity-50', 'pointer-events-none');
             }
         }
 
@@ -734,6 +911,48 @@
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('openCart') === 'true') {
             setTimeout(() => toggleCart(true), 500);
+        }
+
+        // Mobile Menu Logic (Ported from index.html)
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const mobileCartLink = document.getElementById('mobile-cart-link');
+
+        function toggleMobileSidebar(show) {
+            if (show) {
+                mobileSidebar.classList.remove('invisible');
+                mobileSidebar.classList.remove('opacity-0');
+                if (mobileSidebar.querySelector('div')) {
+                    // Mobile sidebar inner logic
+                    mobileSidebar.querySelector('div').classList.remove('translate-x-full');
+                }
+            } else {
+                if (mobileSidebar.querySelector('div')) {
+                    mobileSidebar.querySelector('div').classList.add('translate-x-full');
+                }
+                setTimeout(() => {
+                    mobileSidebar.classList.add('opacity-0');
+                    mobileSidebar.classList.add('invisible');
+                }, 300);
+            }
+        }
+
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => toggleMobileSidebar(true));
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', () => toggleMobileSidebar(false));
+        if (mobileSidebar) {
+            mobileSidebar.addEventListener('click', (e) => {
+                if (e.target === mobileSidebar) toggleMobileSidebar(false);
+            });
+        }
+
+        // Mobile Cart Link Trigger
+        if (mobileCartLink) {
+            mobileCartLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleMobileSidebar(false);
+                setTimeout(() => toggleCart(true), 300);
+            });
         }
 
         // Smooth Nav

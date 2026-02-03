@@ -56,15 +56,115 @@
 
 <body class="bg-bg-light min-h-screen text-text-dark">
 
-    <nav class="p-6 md:px-16 flex justify-between items-center bg-white border-b border-gray-100">
-        <a href="menu.html"
-            class="flex items-center gap-2 text-sm font-medium hover:text-primary-yellow transition-colors group">
-            <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
-            Back to Menu
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-2 md:px-16 box-border">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center md:ml-8">
+            <img src="logo.png" alt="Fairy Cafe Logo"
+                class="h-44 w-auto object-contain drop-shadow-md hover:scale-105 transition-transform duration-300">
         </a>
-        <div class="text-2xl font-bold italic">Fairy Cafe<span class="text-primary-yellow">.</span></div>
-        <div class="w-24"></div> <!-- Spacer for balance -->
+
+        <!-- Center Nav -->
+        <div class="hidden md:flex items-center gap-10">
+            <i data-lucide="search" class="w-4 h-4 cursor-pointer hover:text-primary-yellow transition-colors"></i>
+            <ul class="flex gap-8 list-none">
+                <li><a href="index.html#features-section"
+                        class="text-text-gray text-sm font-medium hover:text-text-dark transition-colors">Why
+                        Fairy Cafe?</a></li>
+                <li><a href="index.html#about-section"
+                        class="text-text-dark text-sm font-medium relative transition-colors">
+                        About
+                        <span
+                            class="absolute -top-1 -left-2.5 w-1.5 h-1.5 bg-text-dark rounded-full rotate-45 transform"></span>
+                    </a></li>
+                <li class="relative group">
+                    <a href="menu.html"
+                        class="text-text-gray text-sm font-medium hover:text-text-dark transition-colors flex items-center gap-1">
+                        Menu
+                        <i data-lucide="chevron-down"
+                            class="w-3.5 h-3.5 transition-transform group-hover:rotate-180"></i>
+                    </a>
+                    <!-- Dropdown Menu -->
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                        <div class="bg-white rounded-2xl shadow-2xl p-4 border border-gray-50 min-w-[180px]">
+                            <ul class="space-y-2">
+                                <li><a href="menu.html?cat=breakfast"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="coffee" class="w-3 h-3"></i> Breakfast</a></li>
+                                <li><a href="menu.html?cat=burgers"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="beef" class="w-3 h-3"></i> Burgers</a></li>
+                                <li><a href="menu.html?cat=pizzas"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="pizza" class="w-3 h-3"></i> Pizzas</a></li>
+                                <li><a href="menu.html?cat=sushi"
+                                        class="text-text-gray text-xs hover:text-primary-yellow flex items-center gap-2 transition-colors py-1"><i
+                                            data-lucide="fish" class="w-3 h-3"></i> Sushi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="md:hidden flex items-center gap-4">
+            <button id="mobile-menu-btn" class="p-2 text-text-dark hover:text-primary-yellow transition-colors">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        <!-- Auth Buttons (Desktop) -->
+        <div class="hidden md:flex items-center gap-6">
+            <button
+                class="px-6 py-2.5 rounded-full text-sm font-medium border border-text-dark bg-white text-text-dark hover:bg-bg-light transition-all">Sign
+                In</button>
+            <button
+                class="px-6 py-2.5 rounded-full text-sm font-medium bg-primary-yellow text-white shadow-[0_5px_15px_rgba(29,105,27,0.4)] hover:-translate-y-0.5 hover:shadow-[0_8px_18px_rgba(29,105,27,0.6)] transition-all">Login</button>
+            <button id="open-cart"
+                class="relative p-2 bg-primary-yellow/10 rounded-full hover:bg-primary-yellow/20 transition-all">
+                <i data-lucide="shopping-cart" class="w-5 h-5 text-primary-yellow"></i>
+                <span id="cart-count"
+                    class="absolute -top-1 -right-1 bg-primary-yellow text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
+            </button>
+        </div>
     </nav>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobile-sidebar"
+        class="fixed inset-0 bg-black/60 backdrop-blur-md z-[100] transition-opacity duration-300 opacity-0 invisible">
+        <div
+            class="absolute right-0 top-0 h-full w-[300px] bg-white p-10 flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+            <button id="close-sidebar" class="self-end p-2 text-text-gray hover:text-text-dark mb-10">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+
+            <ul class="flex flex-col gap-6 mb-12">
+                <li><a href="index.html#features-section"
+                        class="text-xl font-bold text-text-dark border-b border-gray-100 pb-2 block">Why Fairy
+                        Cafe?</a></li>
+                <li><a href="index.html#about-section"
+                        class="text-xl font-bold text-text-dark border-b border-gray-100 pb-2 block">About</a></li>
+                <li><a href="menu.html"
+                        class="text-xl font-bold text-text-dark border-b border-gray-100 pb-2 block">Full Menu</a></li>
+                <li><a href="#" id="mobile-cart-link"
+                        class="text-xl font-bold text-text-dark border-b border-gray-100 pb-2 flex justify-between items-center">
+                        My Cart
+                        <span id="mobile-cart-count"
+                            class="bg-primary-yellow text-white text-xs px-3 py-1 rounded-full">0</span>
+                    </a></li>
+            </ul>
+
+            <div class="mt-auto flex flex-col gap-4">
+                <button
+                    class="w-full py-4 rounded-full font-bold border-2 border-text-dark text-text-dark hover:bg-bg-light transition-all">Sign
+                    In</button>
+                <button
+                    class="w-full py-4 rounded-full font-bold bg-primary-yellow text-white shadow-lg hover:bg-text-dark transition-all">Login</button>
+            </div>
+        </div>
+    </div>
 
     <main class="py-12 px-6 md:px-16 max-w-[1200px] mx-auto">
         <h1 class="text-4xl font-bold mb-10">Complete Your Order</h1>
@@ -276,6 +376,44 @@
         });
 
         updateSummary();
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeSidebarBtn = document.getElementById('close-sidebar');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+
+        function toggleMobileSidebar(show) {
+            if (show) {
+                mobileSidebar.classList.remove('invisible');
+                mobileSidebar.classList.remove('opacity-0');
+                if (mobileSidebar.querySelector('div')) {
+                    mobileSidebar.querySelector('div').classList.remove('translate-x-full');
+                }
+            } else {
+                if (mobileSidebar.querySelector('div')) {
+                    mobileSidebar.querySelector('div').classList.add('translate-x-full');
+                }
+                setTimeout(() => {
+                    mobileSidebar.classList.add('opacity-0');
+                    mobileSidebar.classList.add('invisible');
+                }, 300);
+            }
+        }
+
+        if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => toggleMobileSidebar(true));
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', () => toggleMobileSidebar(false));
+        if (mobileSidebar) {
+            mobileSidebar.addEventListener('click', (e) => {
+                if (e.target === mobileSidebar) toggleMobileSidebar(false);
+            });
+        }
+
+        // Sync Cart Count
+        const cartCount = document.getElementById('cart-count');
+        const mobileCount = document.getElementById('mobile-cart-count');
+        if (cartCount) cartCount.innerText = cart.reduce((acc, item) => acc + item.quantity, 0);
+        if (mobileCount) mobileCount.innerText = cart.reduce((acc, item) => acc + item.quantity, 0);
+
     </script>
 </body>
 
