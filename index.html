@@ -72,51 +72,6 @@
             position: relative;
             z-index: 1;
         }
-
-        /* Custom Cursor & Fairy Dust */
-        @media (min-width: 768px) {
-            body {
-                cursor: none;
-            }
-
-            #custom-cursor {
-                display: block;
-            }
-        }
-
-        @media (max-width: 767px) {
-            #custom-cursor {
-                display: none;
-            }
-
-            .sparkle {
-                display: none;
-            }
-        }
-
-        #custom-cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle, rgba(255, 223, 89, 1) 0%, rgba(255, 223, 89, 0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            filter: blur(2px);
-            box-shadow: 0 0 15px rgba(255, 223, 89, 0.8);
-        }
-
-        .sparkle {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            background: #ffdf59;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            filter: blur(1px);
-        }
     </style>
 
 </head>
@@ -125,9 +80,6 @@
 
     <!-- Watermark Container -->
     <div id="watermark-container"></div>
-
-    <!-- Custom Cursor -->
-    <div id="custom-cursor"></div>
 
     <!-- Navigation -->
     <nav class="absolute top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-2 md:px-16 box-border">
@@ -348,8 +300,8 @@
 
                 <div
                     class="glass-panel p-5 rounded-[25px] flex items-center gap-5 transition-all hover:bg-white/10 hover:border-white/40">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-                        alt="Pizza" class="w-[90px] h-[90px] rounded-full object-cover">
+                    <img src="images/menu/3 Cheeses Pizza $10.jpeg" alt="Pizza"
+                        class="w-[90px] h-[90px] rounded-full object-cover">
 
                     <div>
                         <h4 class="text-xl font-medium mb-2">Mexicoo Pizza</h4>
@@ -551,8 +503,7 @@
             <div class="order-1 md:order-2 about-image opacity-0 translate-x-10">
                 <div class="relative">
                     <div class="absolute -top-4 -left-4 w-full h-full bg-primary-yellow/20 rounded-[2rem]"></div>
-                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80"
-                        alt="Fairy Cafe Interior"
+                    <img src="images/menu/6 Queen Prawns $16.jpeg" alt="Fairy Cafe Interior"
                         class="relative rounded-[2rem] shadow-2xl w-full h-[500px] object-cover">
                 </div>
             </div>
@@ -572,7 +523,7 @@
             <div
                 class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all group cursor-pointer signature-dish opacity-0 translate-y-10">
                 <div class="relative overflow-hidden h-[280px] bg-gray-100">
-                    <img src="https://images.unsplash.com/photo-1504754668076-b74b0ce88d1e?auto=format&fit=crop&w=600&q=80"
+                    <img src="images/menu/Fairy Breakfast $5 (1 egg, 2 rations of bacon, tomato slice, 12 a sausage & chips).jpeg"
                         alt="Breakfast"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div
@@ -599,8 +550,7 @@
             <div
                 class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all group cursor-pointer signature-dish opacity-0 translate-y-10">
                 <div class="relative overflow-hidden h-[280px]">
-                    <img src="https://images.unsplash.com/photo-1547496502-affa22d38842?auto=format&fit=crop&w=600&q=80"
-                        alt="Hungry Man Breakfast"
+                    <img src="images/menu/Hungry Man's Breakfast $12.jpeg" alt="Hungry Man Breakfast"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div
                         class="absolute top-4 right-4 bg-primary-yellow text-white px-4 py-2 rounded-full font-bold text-sm">
@@ -626,8 +576,7 @@
             <div
                 class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all group cursor-pointer signature-dish opacity-0 translate-y-10">
                 <div class="relative overflow-hidden h-[280px]">
-                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80"
-                        alt="Carnivore Platter"
+                    <img src="images/menu/All Day Platter $30.jpeg" alt="Carnivore Platter"
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                     <div
                         class="absolute top-4 right-4 bg-primary-yellow text-white px-4 py-2 rounded-full font-bold text-sm">
@@ -755,8 +704,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-[1200px] mx-auto">
             <div
                 class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
-                <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=400&q=80"
-                    alt="Pancakes"
+                <img src="images/menu/Waffles $3 for 2.jpeg" alt="Gallery 1"
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                 <div
                     class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -765,8 +713,7 @@
             </div>
             <div
                 class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
-                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400&q=80"
-                    alt="Pizza"
+                <img src="images/menu/Regina Pizza $9.jpeg" alt="Gallery 2"
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                 <div
                     class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -775,8 +722,7 @@
             </div>
             <div
                 class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
-                <img src="https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=400&q=80"
-                    alt="Burgers"
+                <img src="images/menu/Sizzling Beef Chicken with rice $13.jpeg" alt="Gallery 3"
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                 <div
                     class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -785,8 +731,7 @@
             </div>
             <div
                 class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
-                <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=400&q=80"
-                    alt="Sushi"
+                <img src="images/menu/Fairy Sushi Platter $30.jpeg" alt="Gallery 4"
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                 <div
                     class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -795,8 +740,7 @@
             </div>
             <div
                 class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer md:col-span-2 gallery-item opacity-0 translate-y-10">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"
-                    alt="Restaurant Interior"
+                <img src="images/menu/Platter for 2 $25.jpeg" alt="Gallery 5"
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                 <div
                     class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -805,8 +749,7 @@
             </div>
             <div
                 class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
-                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=400&q=80"
-                    alt="Dining Experience"
+                <img src="images/menu/Beef or Prawn Chow Mein $8 Chicken or Pork.jpeg" alt="Gallery 6"
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                 <div
                     class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -815,8 +758,7 @@
             </div>
             <div
                 class="relative overflow-hidden rounded-[1.5rem] h-[250px] group cursor-pointer gallery-item opacity-0 translate-y-10">
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80"
-                    alt="Salad"
+                <img src="images/menu/6 Prawn and Calamari.jpeg" alt="Gallery 7"
                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                 <div
                     class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -1012,12 +954,9 @@
             const heroHeight = window.innerHeight; // Hero section height
             const pageHeight = document.documentElement.scrollHeight;
             const pageWidth = window.innerWidth;
-            const isMobile = pageWidth < 768;
 
             // Calculate number of watermarks based on page size
-            // Increase density on mobile as requested (divisor 15000 vs 40000)
-            const divisor = isMobile ? 15000 : 40000;
-            const numWatermarks = Math.floor((pageHeight * pageWidth) / divisor);
+            const numWatermarks = Math.floor((pageHeight * pageWidth) / 40000); // Roughly 1 per 40000 pixels - increased density
 
             for (let i = 0; i < numWatermarks; i++) {
                 const img = document.createElement('img');
@@ -1051,27 +990,6 @@
                 img.style.transform = `rotate(${rotation}deg)`;
 
                 container.appendChild(img);
-
-                // magical animations
-                gsap.to(img, {
-                    x: "random(-20, 20)",
-                    y: "random(-20, 20)",
-                    rotation: `+=${Math.random() * 10 - 5}`,
-                    duration: `random(4, 7)`,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: Math.random() * 2
-                });
-
-                gsap.to(img, {
-                    opacity: "random(0.02, 0.08)",
-                    duration: `random(3, 5)`,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "sine.inOut",
-                    delay: Math.random() * 2
-                });
             }
         }
 
@@ -1090,58 +1008,6 @@
 
         // Initialize Lucide Icons
         lucide.createIcons();
-
-        // Custom Cursor & Fairy Dust Logic
-        const cursor = document.getElementById('custom-cursor');
-        const sparkles = [];
-        let mouseX = 0;
-        let mouseY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-            if (window.innerWidth < 768) return; // Remove trail on mobile
-
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-
-            // Move main cursor
-            gsap.to(cursor, {
-                duration: 0.1,
-                left: mouseX,
-                top: mouseY
-            });
-
-            // Create sparkle
-            createSparkle(mouseX, mouseY);
-        });
-
-        function createSparkle(x, y) {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            document.body.appendChild(sparkle);
-
-            const size = Math.random() * 6 + 2;
-            const destX = x + (Math.random() - 0.5) * 100;
-            const destY = y + (Math.random() - 0.5) * 100;
-
-            gsap.set(sparkle, {
-                left: x,
-                top: y,
-                width: size,
-                height: size,
-                opacity: 0.8
-            });
-
-            gsap.to(sparkle, {
-                duration: Math.random() * 1 + 1,
-                left: destX,
-                top: destY,
-                opacity: 0,
-                scale: 0.2,
-                rotation: Math.random() * 360,
-                ease: "power2.out",
-                onComplete: () => sparkle.remove()
-            });
-        }
 
         // Register ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
@@ -1175,29 +1041,29 @@
         // Menu Data
         const menuData = {
             breakfast: [
-                { name: "Hungry Man Breakfast", price: "$12.00", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=300&q=80", rating: "5.0" },
-                { name: "Breakfast Quesadillas", price: "$7.00", img: "https://images.unsplash.com/photo-1599974579688-8dbdd335c77f?auto=format&fit=crop&w=300&q=80", rating: "4.8" },
-                { name: "Vegetarian Bowl", price: "$8.00", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=300&q=80", rating: "4.7" }
+                { name: "Hungry Man Breakfast", price: "$12.00", img: "images/menu/Hungry Man's Breakfast $12.jpeg", rating: "5.0" },
+                { name: "Breakfast Quesadillas", price: "$7.00", img: "images/menu/Fairy Breakfast $5 (1 egg, 2 rations of bacon, tomato slice, 12 a sausage & chips).jpeg", rating: "4.8" },
+                { name: "Vegetarian Bowl", price: "$8.00", img: "images/menu/Muesli $6.jpeg", rating: "4.7" }
             ],
             burgers: [
-                { name: "Big Fairy Burger", price: "$12.00", img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=300&q=80", rating: "5.0" },
-                { name: "Bacon & Brie", price: "$9.00", img: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?auto=format&fit=crop&w=300&q=80", rating: "4.9" },
-                { name: "Supreme Cheese", price: "$10.00", img: "https://images.unsplash.com/photo-1550317143-b302d906411f?auto=format&fit=crop&w=300&q=80", rating: "4.8" }
+                { name: "Big Fairy Burger", price: "$12.00", img: "images/menu/Big Fairy Burger $12 (2 beef patties, 2 cheese slices, 4 rashers of bacon, avocado, tomato and lettuce, burger roll with chips and salad).jpeg", rating: "5.0" },
+                { name: "Supreme Cheese", price: "$10.00", img: "images/menu/Supreme Burger $9.jpeg", rating: "4.8" },
+                { name: "Classic Burger", price: "$8.00", img: "images/menu/14 Chicken and chips $7.jpeg", rating: "4.9" }
             ],
             pastas: [
-                { name: "Chicken Alfredo", price: "$12.00", img: "https://images.unsplash.com/photo-1645112481338-3014506af548?auto=format&fit=crop&w=300&q=80", rating: "5.0" },
-                { name: "Bolognaise", price: "$9.00", img: "https://images.unsplash.com/photo-1598866539627-9a6983931499?auto=format&fit=crop&w=300&q=80", rating: "4.7" },
-                { name: "Lasagna", price: "$12.00", img: "https://images.unsplash.com/photo-1574894709322-78836d35b99e?auto=format&fit=crop&w=300&q=80", rating: "4.9" }
+                { name: "Shrimp & Salmon", price: "$15.00", img: "images/menu/Pasta_Platter.jpeg", rating: "5.0" },
+                { name: "Chicken Alfredo", price: "$12.00", img: "images/menu/Chicken Schnitzel $12.jpeg", rating: "4.7" },
+                { name: "Bolognaise", price: "$9.00", img: "images/menu/Garlic Beef Chicken Pork Rice $5.jpeg", rating: "4.9" }
             ],
             pizzas: [
-                { name: "The Fairy Pizza", price: "$14.00", img: "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=300&q=80", rating: "5.0" },
-                { name: "Chicken Mushroom", price: "$11.00", img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=300&q=80", rating: "4.8" },
-                { name: "Bacon Avo & Feta", price: "$9.00", img: "https://images.unsplash.com/photo-1593504049359-7b797486fab6?auto=format&fit=crop&w=300&q=80", rating: "4.9" }
+                { name: "Three Cheeses", price: "$10.00", img: "images/menu/3 Cheeses Pizza $10.jpeg", rating: "5.0" },
+                { name: "The Fairy Pizza", price: "$14.00", img: "images/menu/Regina Pizza $9.jpeg", rating: "4.8" },
+                { name: "Family Pizza", price: "$12.00", img: "images/menu/All Day Platter $30.jpeg", rating: "4.9" }
             ],
             sushi: [
-                { name: "Tiger Roll", price: "$10.00", img: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=300&q=80", rating: "5.0" },
-                { name: "Salmon Sashimi", price: "$6.00", img: "https://images.unsplash.com/photo-1534422298391-e4f8c170db06?auto=format&fit=crop&w=300&q=80", rating: "4.8" },
-                { name: "Prawn California", price: "$8.00", img: "https://images.unsplash.com/photo-1559466273-d95e72debaf8?auto=format&fit=crop&w=300&q=80", rating: "4.7" }
+                { name: "Tiger Roll", price: "$10.00", img: "images/menu/Rainbow Reloaded $12.jpeg", rating: "5.0" },
+                { name: "Salmon Sashimi", price: "$6.00", img: "images/menu/Fairy Sushi Platter $30.jpeg", rating: "4.8" },
+                { name: "California Roll", price: "$8.00", img: "images/menu/Smoked Salmon Creamy cheese California 8 pieces. $10 (Sumptuous fusion of bold flavors).jpeg", rating: "4.7" }
             ]
         };
 
