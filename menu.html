@@ -81,10 +81,42 @@
             opacity: 1;
             /* Ensure visible by default, GSAP will handle entrance if working */
         }
+
+        /* Custom Cursor & Fairy Dust */
+        body {
+            cursor: none;
+        }
+
+        #custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(255, 223, 89, 1) 0%, rgba(255, 223, 89, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            filter: blur(2px);
+            box-shadow: 0 0 15px rgba(255, 223, 89, 0.8);
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #ffdf59;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            filter: blur(1px);
+        }
     </style>
 </head>
 
 <body class="bg-bg-light min-h-screen text-text-dark overflow-x-hidden">
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-2 md:px-16 box-border">
@@ -971,6 +1003,55 @@
                 }
             });
         });
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Custom Cursor & Fairy Dust Logic
+        const cursor = document.getElementById('custom-cursor');
+        let mouseX = 0;
+        let mouseY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            gsap.to(cursor, {
+                duration: 0.1,
+                left: mouseX,
+                top: mouseY
+            });
+
+            createSparkle(mouseX, mouseY);
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            document.body.appendChild(sparkle);
+
+            const size = Math.random() * 6 + 2;
+            const destX = x + (Math.random() - 0.5) * 100;
+            const destY = y + (Math.random() - 0.5) * 100;
+
+            gsap.set(sparkle, {
+                left: x,
+                top: y,
+                width: size,
+                height: size,
+                opacity: 0.8
+            });
+
+            gsap.to(sparkle, {
+                duration: Math.random() * 1 + 1,
+                left: destX,
+                top: destY,
+                opacity: 0,
+                scale: 0.2,
+                rotation: Math.random() * 360,
+                ease: "power2.out",
+                onComplete: () => sparkle.remove()
+            });
+        }
     </script>
 </body>
 

@@ -48,10 +48,70 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
+
+        /* Watermark Container */
+        #watermark-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .watermark-item {
+            position: absolute;
+            opacity: 0.04;
+            pointer-events: none;
+        }
+
+        /* Ensure hero section is above watermarks */
+        main.h-screen {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Custom Cursor & Fairy Dust */
+        body {
+            cursor: none;
+        }
+
+        #custom-cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(255, 223, 89, 1) 0%, rgba(255, 223, 89, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            filter: blur(2px);
+            box-shadow: 0 0 15px rgba(255, 223, 89, 0.8);
+        }
+
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #ffdf59;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            filter: blur(1px);
+        }
     </style>
+
 </head>
 
 <body class="bg-bg-light min-h-screen flex flex-col overflow-x-hidden text-text-dark">
+
+    <!-- Watermark Container -->
+    <div id="watermark-container"></div>
+
+    <!-- Custom Cursor -->
+    <div id="custom-cursor"></div>
 
     <!-- Navigation -->
     <nav class="absolute top-0 left-0 w-full z-50 flex justify-between items-center px-6 py-2 md:px-16 box-border">
@@ -930,8 +990,137 @@
 
     <!-- Init Scripts -->
     <script>
+        // Generate Random Watermarks
+        function generateWatermarks() {
+            const container = document.getElementById('watermark-container');
+            const heroHeight = window.innerHeight; // Hero section height
+            const pageHeight = document.documentElement.scrollHeight;
+            const pageWidth = window.innerWidth;
+
+            // Calculate number of watermarks based on page size
+            const numWatermarks = Math.floor((pageHeight * pageWidth) / 40000); // Roughly 1 per 40000 pixels - increased density
+
+            for (let i = 0; i < numWatermarks; i++) {
+                const img = document.createElement('img');
+                img.src = 'watermark-logo.png';
+                img.className = 'watermark-item';
+
+                // Random size between 80px and 180px
+                const size = Math.random() * 100 + 80;
+                img.style.width = `${size}px`;
+                img.style.height = 'auto';
+
+                // Random rotation between -45 and 45 degrees
+                const rotation = Math.random() * 90 - 45;
+
+                // Random position - avoid hero section (first viewport height)
+                let top, left;
+
+                // 70% chance to be below hero, 30% chance to be anywhere (for variety)
+                if (Math.random() > 0.3) {
+                    // Below hero section
+                    top = Math.random() * (pageHeight - heroHeight - size) + heroHeight;
+                } else {
+                    // Anywhere on page
+                    top = Math.random() * (pageHeight - size);
+                }
+
+                left = Math.random() * (pageWidth - size);
+
+                img.style.top = `${top}px`;
+                img.style.left = `${left}px`;
+                img.style.transform = `rotate(${rotation}deg)`;
+
+                container.appendChild(img);
+
+                // magical animations
+                gsap.to(img, {
+                    x: "random(-20, 20)",
+                    y: "random(-20, 20)",
+                    rotation: `+=${Math.random() * 10 - 5}`,
+                    duration: `random(4, 7)`,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: Math.random() * 2
+                });
+
+                gsap.to(img, {
+                    opacity: "random(0.02, 0.08)",
+                    duration: `random(3, 5)`,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut",
+                    delay: Math.random() * 2
+                });
+            }
+        }
+
+        // Generate watermarks on load
+        window.addEventListener('load', generateWatermarks);
+
+        // Regenerate on window resize
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                document.getElementById('watermark-container').innerHTML = '';
+                generateWatermarks();
+            }, 500);
+        });
+
         // Initialize Lucide Icons
         lucide.createIcons();
+
+        // Custom Cursor & Fairy Dust Logic
+        const cursor = document.getElementById('custom-cursor');
+        const sparkles = [];
+        let mouseX = 0;
+        let mouseY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Move main cursor
+            gsap.to(cursor, {
+                duration: 0.1,
+                left: mouseX,
+                top: mouseY
+            });
+
+            // Create sparkle
+            createSparkle(mouseX, mouseY);
+        });
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            document.body.appendChild(sparkle);
+
+            const size = Math.random() * 6 + 2;
+            const destX = x + (Math.random() - 0.5) * 100;
+            const destY = y + (Math.random() - 0.5) * 100;
+
+            gsap.set(sparkle, {
+                left: x,
+                top: y,
+                width: size,
+                height: size,
+                opacity: 0.8
+            });
+
+            gsap.to(sparkle, {
+                duration: Math.random() * 1 + 1,
+                left: destX,
+                top: destY,
+                opacity: 0,
+                scale: 0.2,
+                rotation: Math.random() * 360,
+                ease: "power2.out",
+                onComplete: () => sparkle.remove()
+            });
+        }
 
         // Register ScrollTrigger
         gsap.registerPlugin(ScrollTrigger);
