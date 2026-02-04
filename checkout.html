@@ -53,8 +53,24 @@
         }
 
         /* Custom Cursor & Fairy Dust */
-        body {
-            cursor: none;
+        @media (min-width: 768px) {
+            body {
+                cursor: none;
+            }
+
+            #custom-cursor {
+                display: block;
+            }
+        }
+
+        @media (max-width: 767px) {
+            #custom-cursor {
+                display: none;
+            }
+
+            .sparkle {
+                display: none;
+            }
         }
 
         #custom-cursor {
@@ -335,6 +351,8 @@
         let mouseY = 0;
 
         window.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 768) return; // Remove trail on mobile
+
             mouseX = e.clientX;
             mouseY = e.clientY;
 

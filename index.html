@@ -74,8 +74,24 @@
         }
 
         /* Custom Cursor & Fairy Dust */
-        body {
-            cursor: none;
+        @media (min-width: 768px) {
+            body {
+                cursor: none;
+            }
+
+            #custom-cursor {
+                display: block;
+            }
+        }
+
+        @media (max-width: 767px) {
+            #custom-cursor {
+                display: none;
+            }
+
+            .sparkle {
+                display: none;
+            }
         }
 
         #custom-cursor {
@@ -996,9 +1012,12 @@
             const heroHeight = window.innerHeight; // Hero section height
             const pageHeight = document.documentElement.scrollHeight;
             const pageWidth = window.innerWidth;
+            const isMobile = pageWidth < 768;
 
             // Calculate number of watermarks based on page size
-            const numWatermarks = Math.floor((pageHeight * pageWidth) / 40000); // Roughly 1 per 40000 pixels - increased density
+            // Increase density on mobile as requested (divisor 15000 vs 40000)
+            const divisor = isMobile ? 15000 : 40000;
+            const numWatermarks = Math.floor((pageHeight * pageWidth) / divisor);
 
             for (let i = 0; i < numWatermarks; i++) {
                 const img = document.createElement('img');
@@ -1079,6 +1098,8 @@
         let mouseY = 0;
 
         window.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 768) return; // Remove trail on mobile
+
             mouseX = e.clientX;
             mouseY = e.clientY;
 
