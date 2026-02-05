@@ -63,7 +63,7 @@
 
         .watermark-item {
             position: absolute;
-            opacity: 0.04;
+            opacity: 0.08;
             pointer-events: none;
         }
 
@@ -948,43 +948,98 @@
 
     <!-- Init Scripts -->
     <script>
+        // Seeded Random Number Generator (Simple LCG)
+        // This ensures the fairies appear in the exact same spot every time for a given screen size
+        let seed = 12345;
+        function seededRandom() {
+            var x = Math.sin(seed++) * 10000;
+            return x - Math.floor(x);
+        }
+
         // Generate Random Watermarks
         function generateWatermarks() {
+            // Reset seed so positions are identical on every call (e.g. resize)
+            seed = 12345;
+
             const container = document.getElementById('watermark-container');
-            const heroHeight = window.innerHeight; // Hero section height
+            const heroHeight = window.innerHeight;
             const pageHeight = document.documentElement.scrollHeight;
             const pageWidth = window.innerWidth;
 
-            // Calculate number of watermarks based on page size
-            const numWatermarks = Math.floor((pageHeight * pageWidth) / 40000); // Roughly 1 per 40000 pixels - increased density
+            // Calculate number of watermarks based on page size and device
+            const isMobile = pageWidth < 768;
+            const densityDivisor = isMobile ? 40000 : 80000; // Higher density on mobile (40k), desktop (80k)
+            const numWatermarks = Math.floor((pageHeight * pageWidth) / densityDivisor);
+
+            const placedItems = [];
 
             for (let i = 0; i < numWatermarks; i++) {
+                let attempts = 0;
+                let placed = false;
+
+                // Try to find a non-overlapping position
+                while (attempts < 50 && !placed) {
+                    // Random size: Smaller on mobile to fit the higher density
+                    const minSize = isMobile ? 100 : 200;
+                    const maxSizeRange = isMobile ? 150 : 200; // 100-250 on mobile, 200-400 on desktop
+                    const size = seededRandom() * maxSizeRange + minSize;
+
+                    // Random rotation
+                    const rotation = seededRandom() * 90 - 45;
+
+                    // Random position
+                    const top = seededRandom() * (pageHeight - size);
+                    const left = seededRandom() * (pageWidth - size);
+
+                    // Check for overlap
+                    let overlap = false;
+                    for (const item of placedItems) {
+                        // Simple bounding box collision detection
+                        // Add some buffer (e.g., 50px) to ensure they are "scattered" and not just touching
+                        const buffer = 50;
+                        if (left < item.left + item.width + buffer &&
+                            left + size + buffer > item.left &&
+                            top < item.top + item.height + buffer &&
+                            top + size + buffer > item.top) {
+                            overlap = true;
+                            break;
+                        }
+                    }
+
+                    if (!overlap) {
+                        const img = document.createElement('img');
+                        img.src = 'watermark-logo.png';
+                        img.className = 'watermark-item';
+                        img.style.width = `${size}px`;
+                        img.style.height = 'auto';
+                        img.style.top = `${top}px`;
+                        img.style.left = `${left}px`;
+                        img.style.transform = `rotate(${rotation}deg)`;
+
+                        container.appendChild(img);
+
+                        placedItems.push({ top, left, width: size, height: size }); // simplified height as square for collision
+                        placed = true;
+                    }
+
+                    attempts++;
+                }
+            }
+
+            // Add 2 extra fairies on the right side of the page
+            const rightSidePositions = [0.25, 0.65]; // 25% and 65% down the page
+            for (let i = 0; i < 2; i++) {
                 const img = document.createElement('img');
                 img.src = 'watermark-logo.png';
                 img.className = 'watermark-item';
 
-                // Random size between 80px and 180px
-                const size = Math.random() * 100 + 80;
+                const size = 200; // Fixed size for consistency
+                const rotation = (i === 0) ? -20 : 25; // Different rotations
+                const top = pageHeight * rightSidePositions[i];
+                const left = pageWidth * 0.8; // 80% across the page (clearly on right, not at edge)
+
                 img.style.width = `${size}px`;
                 img.style.height = 'auto';
-
-                // Random rotation between -45 and 45 degrees
-                const rotation = Math.random() * 90 - 45;
-
-                // Random position - avoid hero section (first viewport height)
-                let top, left;
-
-                // 70% chance to be below hero, 30% chance to be anywhere (for variety)
-                if (Math.random() > 0.3) {
-                    // Below hero section
-                    top = Math.random() * (pageHeight - heroHeight - size) + heroHeight;
-                } else {
-                    // Anywhere on page
-                    top = Math.random() * (pageHeight - size);
-                }
-
-                left = Math.random() * (pageWidth - size);
-
                 img.style.top = `${top}px`;
                 img.style.left = `${left}px`;
                 img.style.transform = `rotate(${rotation}deg)`;
