@@ -263,9 +263,9 @@
 
         <!-- Image Container (Centered Over Right Side) -->
         <div class="absolute inset-0 pointer-events-none hidden md:block">
-            <!-- Chef Widget (Bottom Left) -->
+            <!-- Chef Widget (Bottom Left) - Hidden on medium screens to avoid overlap -->
             <div
-                class="absolute bottom-10 left-24 bg-black/40 backdrop-blur-md p-5 rounded-[25px] border border-white/10 flex items-center gap-5 transition-all hover:bg-black/60 hover:border-primary-yellow hover:translate-x-1 shadow-[0_15px_40px_rgba(0,0,0,0.1)] cursor-pointer chef-widget-trigger group pointer-events-auto">
+                class="absolute bottom-10 left-24 bg-black/40 backdrop-blur-md p-5 rounded-[25px] border border-white/10 hidden lg:flex items-center gap-5 transition-all hover:bg-black/60 hover:border-primary-yellow hover:translate-x-1 shadow-[0_15px_40px_rgba(0,0,0,0.1)] cursor-pointer chef-widget-trigger group pointer-events-auto">
                 <img src="images/menu/Hungry Man's Breakfast $12.jpeg" alt="Chef Choice"
                     class="w-[90px] h-[90px] rounded-full object-cover ring-2 ring-primary-yellow/50">
 
@@ -970,7 +970,7 @@
 
             // Calculate number of watermarks based on page size and device
             const isMobile = pageWidth < 768;
-            const densityDivisor = isMobile ? 40000 : 80000; // Higher density on mobile (40k), desktop (80k)
+            const densityDivisor = isMobile ? 20000 : 80000; // Higher density on mobile (20k), desktop (80k)
             const numWatermarks = Math.floor((pageHeight * pageWidth) / densityDivisor);
 
             const placedItems = [];
