@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fairy Cafe - Bulawayo's Premier Restaurant</title>
+    <meta name="description" content="Fairy Cafe — Bulawayo's premier restaurant serving breakfast, burgers, pizzas, sushi, and more. Order online for delivery or pickup across our Bulawayo, Greendale, and Joina City branches.">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -16,7 +17,7 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-yellow': '#1d691b',
+                        'primary-yellow': '#1d691b', // NOTE: Legacy name — actual color is green
                         'text-dark': '#2B2B2B',
                         'text-gray': '#7c7c7c',
                         'bg-light': '#F2F2F2',
@@ -139,13 +140,8 @@
             </button>
         </div>
 
-        <!-- Auth Buttons (Desktop) -->
+        <!-- Cart Button (Desktop) -->
         <div class="hidden md:flex items-center gap-6">
-            <button
-                class="px-6 py-2.5 rounded-full text-sm font-medium border border-text-dark bg-white text-text-dark hover:bg-bg-light transition-all">Sign
-                In</button>
-            <button
-                class="px-6 py-2.5 rounded-full text-sm font-medium bg-primary-yellow text-white shadow-[0_5px_15px_rgba(29,105,27,0.4)] hover:-translate-y-0.5 hover:shadow-[0_8px_18px_rgba(29,105,27,0.6)] transition-all">Login</button>
             <a href="menu.html"
                 class="relative p-2 bg-primary-yellow/10 rounded-full hover:bg-primary-yellow/20 transition-all">
                 <i data-lucide="shopping-cart" class="w-5 h-5 text-primary-yellow"></i>
@@ -180,13 +176,7 @@
                     </a></li>
             </ul>
 
-            <div class="mt-auto flex flex-col gap-4">
-                <button
-                    class="w-full py-4 rounded-full font-bold border-2 border-text-dark text-text-dark hover:bg-bg-light transition-all">Sign
-                    In</button>
-                <button
-                    class="w-full py-4 rounded-full font-bold bg-primary-yellow text-white shadow-lg hover:bg-text-dark transition-all">Login</button>
-            </div>
+
         </div>
     </div>
 
@@ -241,7 +231,7 @@
                     <!-- Buttons Row -->
                     <div class="flex flex-col xl:flex-row items-center gap-6 w-full">
                         <a href="menu.html"
-                            class="glass-panel text-white p-4 pr-8 rounded-full inline-flex items-center gap-[20px] text-lg font-medium shadow-2xl hover:scale-105 hover:bg-white/10 transition-transform w-[240px] md:w-fit justify-center md:justify-start group shrink-0 h-[80px]">
+                            class="bg-text-dark text-white p-4 pr-8 rounded-full inline-flex items-center gap-[20px] text-lg font-medium shadow-2xl hover:scale-105 hover:bg-black transition-transform w-[240px] md:w-fit justify-center md:justify-start group shrink-0 h-[80px]">
                             <div
                                 class="w-[50px] h-[50px] bg-primary-yellow rounded-full flex justify-center items-center text-text-dark shrink-0">
                                 <i data-lucide="shopping-bag" class="w-5 h-5 fill-current"></i>
@@ -251,7 +241,7 @@
 
                         <!-- Chef Widget (Inline) -->
                         <div
-                            class="glass-panel p-3 pr-6 rounded-[50px] flex items-center gap-4 transition-all hover:bg-white/10 hover:border-white/40 hover:-translate-y-1 shadow-lg cursor-pointer chef-widget-trigger group max-w-[320px] xl:max-w-none">
+                            class="bg-white/80 backdrop-blur-md p-3 pr-6 rounded-[50px] border border-black/5 flex items-center gap-4 transition-all hover:bg-white hover:border-primary-yellow hover:-translate-y-1 shadow-lg cursor-pointer chef-widget-trigger group max-w-[320px] xl:max-w-none">
                             <img src="images/menu/Hungry Man's Breakfast $12.jpeg" alt="Chef Choice"
                                 class="w-[60px] h-[60px] rounded-full object-cover ring-2 ring-primary-yellow/50 shrink-0">
 
@@ -789,8 +779,7 @@
                             </div>
                             <div>
                                 <div class="font-semibold text-text-dark mb-1">Address</div>
-                                <div class="text-text-gray">127 Fife street between 13th and 14th Ave,
-                                    Bulawayo<br>Zimbabwe</div>
+                                <div class="text-text-gray">127 Fife Street,<br>between 13th and 14th Ave, Bulawayo</div>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
@@ -941,8 +930,7 @@
                     </li>
                     <li class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4"></i> info@fairycafe.co.zw
                     </li>
-                    <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i> 127 Fife street
-                        between 13th and 14th Ave, Bulawayo</li>
+                    <li class="flex items-center gap-3"><i data-lucide="map-pin" class="w-4 h-4"></i> 127 Fife Street between 13th and 14th Ave, Bulawayo</li>
                 </ul>
             </div>
         </div>
@@ -1104,7 +1092,7 @@
             breakfast: [
                 { name: "Hungry Man’s Breakfast", price: "$12.00", img: "images/menu/Hungry Man's Breakfast $12.jpeg", rating: "5.0" },
                 { name: "Waffle Delight", price: "$6.00", img: "images/menu/Waffle Delight $6 (1 Waffle, Baby Spinach, bacon egg syrup).jpeg", rating: "4.8" },
-                { name: "Fairy Breakfast", price: "$5.00", img: "images/menu/Fairy Breakfast $5 (1 egg, 2 rations of bacon, tomato slice, 12 a sausage & chips).jpeg", rating: "4.9" }
+                { name: "Fairy Breakfast", price: "$7.00", img: "images/menu/Fairy Breakfast $5 (1 egg, 2 rations of bacon, tomato slice, 12 a sausage & chips).jpeg", rating: "4.9" }
             ],
             burgers: [
                 { name: "Big Fairy Burger", price: "$12.00", img: "images/menu/Big Fairy Burger $12 (2 beef patties, 2 cheese slices, 4 rashers of bacon, avocado, tomato and lettuce, burger roll with chips and salad).jpeg", rating: "5.0" },

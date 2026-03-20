@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Fairy Cafe Bulawayo</title>
+    <meta name="description" content="Complete your Fairy Cafe order — choose delivery or pickup, review your cart, and place your order.">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -16,7 +17,7 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-yellow': '#1d691b',
+                        'primary-yellow': '#1d691b', // NOTE: Legacy name — actual color is green
                         'text-dark': '#2B2B2B',
                         'text-gray': '#7c7c7c',
                         'bg-light': '#F2F2F2',
@@ -115,13 +116,8 @@
             </button>
         </div>
 
-        <!-- Auth Buttons (Desktop) -->
+        <!-- Cart Button (Desktop) -->
         <div class="hidden md:flex items-center gap-6">
-            <button
-                class="px-6 py-2.5 rounded-full text-sm font-medium border border-text-dark bg-white text-text-dark hover:bg-bg-light transition-all">Sign
-                In</button>
-            <button
-                class="px-6 py-2.5 rounded-full text-sm font-medium bg-primary-yellow text-white shadow-[0_5px_15px_rgba(29,105,27,0.4)] hover:-translate-y-0.5 hover:shadow-[0_8px_18px_rgba(29,105,27,0.6)] transition-all">Login</button>
             <button id="open-cart"
                 class="relative p-2 bg-primary-yellow/10 rounded-full hover:bg-primary-yellow/20 transition-all">
                 <i data-lucide="shopping-cart" class="w-5 h-5 text-primary-yellow"></i>
@@ -136,7 +132,8 @@
         class="fixed inset-0 bg-black/60 backdrop-blur-md z-[100] transition-opacity duration-300 opacity-0 invisible">
         <div
             class="absolute right-0 top-0 h-full w-[300px] bg-white p-10 flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
-            <button id="close-sidebar" class="self-end p-2 text-text-gray hover:text-text-dark mb-10">
+            <button id="close-sidebar" class="self-end p-2 text-text-gray hover:text-text-dark mb-10"
+                aria-label="Close Sidebar">
                 <i data-lucide="x" class="w-8 h-8"></i>
             </button>
 
@@ -156,13 +153,7 @@
                     </a></li>
             </ul>
 
-            <div class="mt-auto flex flex-col gap-4">
-                <button
-                    class="w-full py-4 rounded-full font-bold border-2 border-text-dark text-text-dark hover:bg-bg-light transition-all">Sign
-                    In</button>
-                <button
-                    class="w-full py-4 rounded-full font-bold bg-primary-yellow text-white shadow-lg hover:bg-text-dark transition-all">Login</button>
-            </div>
+
         </div>
     </div>
 
@@ -191,7 +182,7 @@
                             class="option-card p-6 rounded-2xl border-2 border-gray-100 cursor-pointer hover:border-primary-yellow/30 transition-all text-center">
                             <i data-lucide="package" class="w-8 h-8 mx-auto mb-3 text-text-gray"></i>
                             <span class="font-bold block">Store Pickup</span>
-                            <span class="text-xs text-text-gray">Collect at 168 Mugabe Way</span>
+                            <span class="text-xs text-text-gray">Collect at 181 Arcturus Rd, Greendale</span>
                         </div>
                     </div>
                 </section>
